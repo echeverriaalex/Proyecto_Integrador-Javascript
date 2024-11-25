@@ -1,0 +1,355 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Jura:wght@634&family=Outfit:wght@100..900&family=Rubik+Mono+One&family=Space+Grotesk:wght@300..700&family=Young+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Figtree:ital,wght@0,300..900;1,300..900&family=Jura:wght@634&family=Outfit:wght@100..900&family=Rubik+Mono+One&family=Space+Grotesk:wght@300..700&family=Young+Serif&display=swap');
+
+:root{
+    --white-text: #fff;
+    --max-width: 1200px;
+    --border-radius: 10px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+html{
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Header */
+header{
+    background: linear-gradient(30deg, #0a8bc7, #47e2e2, #00ffff, #eee7e7);
+    background: #0f0f0f96;
+    /*place-items: center;*/
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    position: sticky;
+    top: 2px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    z-index: 100;
+}
+
+.logo{
+    /*background: red;*/
+    max-height: 60px;
+    max-width: 60px;
+}
+
+.navbar{
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: green; */
+}
+
+.menu-label{
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-label, #menu-toggle{
+    display: none;
+}
+
+.bar{
+    width: 30px;    
+    border: 2px solid black;
+}
+
+.navbar-list{
+    padding: 10px;
+    width: 100%;
+    /*background: yellow;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    
+}
+
+.navbar-list a{
+    /* background: #2e2b2b; */
+    color: white;
+    font-weight: bold;
+    font-size: 22px;
+    
+    display: block;
+    padding: 10px;
+    text-align: center;
+    font-family: "Didact Gothic", sans-serif;
+}
+
+.navbar-list a:hover{
+    background: rgb(0, 174, 255);
+    border-radius: 10px;
+    transition: all 1s;
+
+    /* animation: sobresalir 1s linear */
+}
+
+@keyframes sobresalir{
+    to{
+        margin-left: 0px;
+    }
+    from{
+        margin-left: 10px;
+    }
+}
+
+/* Main */
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    /*
+    padding: 10px;
+    background: pink;
+    */
+}
+
+section{
+    max-width: var(--max-width);
+    width: 100%;
+    background: violet;
+    padding: 10px;
+    border-radius: 10px;
+    background: linear-gradient(40deg, black, gray, lightgray);
+}
+
+.hero{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    max-width: 1200px;
+    height: 400px;
+    width: 100%;
+    padding: 10px;
+    /*
+    background: linear-gradient(blue, red);
+    background: linear-gradient(40deg, black, gray, white);
+    */
+}
+
+.hero-container{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.title-container{
+    /* background: green;*/
+    display: flex;
+    align-items: center;
+}
+
+.title{
+    font-family: "Rubik Mono One", monospace;
+    font-weight: 200;
+    font-size: 30px;
+    font-style: normal;
+    color: var(--white-text);
+}
+
+.title-container img{
+    height: 50px;
+    width: 50px;
+}
+
+.hero-container p{
+    font-size: 22px;
+    font-family: "Didact Gothic", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--white-text);
+}
+
+.hero img{
+    object-fit: contain;
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 15px;
+}
+
+.cards-container{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: greenyellow;
+}
+
+.info-card{
+    height: 400px;
+    width: 400px;
+    background: red;
+}
+
+
+/* Products */
+.products-container{
+    padding: 10px;
+    
+
+    /*
+    background: pink;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    */
+    
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 10px;
+}
+
+
+.product-card{
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    border: 2px solid  black;
+    padding: 10px;
+    border-radius: 10px;
+    background: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-product{
+    height: 300px;
+    width: 100%;
+    object-fit: contain;
+    background: lightblue;
+}
+
+.description{
+    height: 100px;
+    overflow: auto;
+    width: 100%;
+}
+
+.button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    bottom: 2px;
+    position: relative;
+    background: rgb(236, 175, 7);
+    width: 100%;
+}
+
+.btn, .btn-cart{
+    background: #167fa1;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 16px;
+    position: absolute;
+    bottom: 0px;
+    display: block;
+    width: 80%;
+}
+
+/*
+.btn-cart:hover{
+    background: red;
+    color: transparent;
+}
+
+.btn-cart:hover::after{
+    content: 'Quitar';
+    color: black;
+    background: red;
+}
+*/
+
+
+/* Contacto */
+.contact-container{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-container form{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    padding: 10px;
+    background: blue;
+}
+
+.input-container{
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+
+    width: 100%;
+    max-width: 500px;
+    background: cadetblue;
+    padding: 5px;
+}
+
+.input-container label{
+    font-size: 20px;
+}
+
+.input-container input{
+    border-radius: 5px;
+    height: 25px;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+}
+
+.contact-container img{
+    max-width: 100%;
+    max-height: 100%;
+    width: 50%;
+    border-radius: 10px;
+}
+
+footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    height: 80px;
+    background: red;
+}
