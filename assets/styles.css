@@ -1,10 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Jura:wght@634&family=Outfit:wght@100..900&family=Rubik+Mono+One&family=Space+Grotesk:wght@300..700&family=Young+Serif&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Figtree:ital,wght@0,300..900;1,300..900&family=Jura:wght@634&family=Outfit:wght@100..900&family=Rubik+Mono+One&family=Space+Grotesk:wght@300..700&family=Young+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Doto:wght@100..900&family=Figtree:ital,wght@0,300..900;1,300..900&family=Jura:wght@634&family=Outfit:wght@100..900&family=Rubik+Mono+One&family=Space+Grotesk:wght@300..700&family=Young+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Doto:wght@100..900&family=Edu+AU+VIC+WA+NT+Arrows:wght@400..700&family=Figtree:ital,wght@0,300..900;1,300..900&family=Jura:wght@634&family=Outfit:wght@100..900&family=Rubik+Mono+One&family=Space+Grotesk:wght@300..700&family=Young+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Doto:wght@100..900&family=Edu+AU+VIC+WA+NT+Arrows:wght@400..700&family=Figtree:ital,wght@0,300..900;1,300..900&family=Julius+Sans+One&family=Jura:wght@634&family=Outfit:wght@100..900&family=Rubik+Mono+One&family=Space+Grotesk:wght@300..700&family=Young+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Doto:wght@100..900&family=Edu+AU+VIC+WA+NT+Arrows:wght@400..700&family=Figtree:ital,wght@0,300..900;1,300..900&family=Julius+Sans+One&family=Jura:wght@634&family=Outfit:wght@100..900&family=Rubik+Mono+One&family=Space+Grotesk:wght@300..700&family=Syncopate:wght@400;700&family=Young+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Doto:wght@100..900&family=Edu+AU+VIC+WA+NT+Arrows:wght@400..700&family=Faster+One&family=Figtree:ital,wght@0,300..900;1,300..900&family=Julius+Sans+One&family=Jura:wght@634&family=Outfit:wght@100..900&family=Rubik+Mono+One&family=Space+Grotesk:wght@300..700&family=Syncopate:wght@400;700&family=Young+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Doto:wght@100..900&family=Edu+AU+VIC+WA+NT+Arrows:wght@400..700&family=Faster+One&family=Figtree:ital,wght@0,300..900;1,300..900&family=Jacquard+12+Charted&family=Julius+Sans+One&family=Jura:wght@634&family=Outfit:wght@100..900&family=Rubik+Mono+One&family=Space+Grotesk:wght@300..700&family=Syncopate:wght@400;700&family=Young+Serif&display=swap');
+
+
 
 :root{
     --white-text: #fff;
     --max-width: 1200px;
     --border-radius: 10px;
+    --bg-green: #069c56;
 }
 
 *{
@@ -23,22 +32,28 @@ html{
 body{
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
+    /*
     justify-content: center;
     align-items: center;
+    width: 100%;
+    background: linear-gradient(30deg, #000707, #03344b);
+    */
 }
 
 /* Header */
 header{
+    background: #069c56;
+    
+    /*
     background: linear-gradient(30deg, #0a8bc7, #47e2e2, #00ffff, #eee7e7);
     background: #0f0f0f96;
-    /*place-items: center;*/
+    place-items: center;
+    */
     width: 100%;
-    max-width: 1300px;
     margin: 0 auto;
     position: sticky;
-    top: 2px;
-    border-radius: 10px;
+    top: 0;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -92,7 +107,6 @@ header{
     color: white;
     font-weight: bold;
     font-size: 22px;
-    
     display: block;
     padding: 10px;
     text-align: center;
@@ -100,10 +114,10 @@ header{
 }
 
 .navbar-list a:hover{
-    background: rgb(0, 174, 255);
+    background-color: #057e45;
     border-radius: 10px;
-    transition: all 1s;
-
+    transition: all .5s;
+    /*background: #00aeff;*/
     /* animation: sobresalir 1s linear */
 }
 
@@ -122,21 +136,23 @@ main{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 20px;
-
-    /*
-    padding: 10px;
-    background: pink;
-    */
+    /*padding: 10px;*/
 }
 
 section{
-    max-width: var(--max-width);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    background: violet;
-    padding: 10px;
+    /* 
     border-radius: 10px;
-    background: linear-gradient(40deg, black, gray, lightgray);
+    max-width: var(--max-width);
+    padding: 10px; 
+    background: violet;
+    background: linear-gradient(120deg, black, gray); 
+    */
 }
 
 .hero{
@@ -144,11 +160,13 @@ section{
     justify-content: center;
     align-items: center;
     gap: 20px;
-    max-width: 1200px;
-    height: 400px;
+    height: 40vh;
     width: 100%;
     padding: 10px;
+    background:  var(--bg-green);
+    opacity: .9;
     /*
+    max-width: 1200px;
     background: linear-gradient(blue, red);
     background: linear-gradient(40deg, black, gray, white);
     */
@@ -159,6 +177,7 @@ section{
     gap: 10px;
     flex-direction: column;
     padding: 10px;
+    /*width: 30%;*/
 }
 
 .title-container{
@@ -168,11 +187,12 @@ section{
 }
 
 .title{
-    font-family: "Rubik Mono One", monospace;
-    font-weight: 200;
     font-size: 30px;
     font-style: normal;
     color: var(--white-text);
+    font-family: "Syncopate", serif;
+    font-weight: 700;
+    font-style: normal;
 }
 
 .title-container img{
@@ -186,6 +206,12 @@ section{
     font-weight: 400;
     font-style: normal;
     color: var(--white-text);
+
+    font-family: "Doto", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 900;
+    font-variation-settings: "ROND" 0;
 }
 
 .hero img{
@@ -194,6 +220,12 @@ section{
     max-width: 100%;
     border-radius: 15px;
 }
+
+.img-hero{
+    /* width: 70%; */
+}
+
+
 
 .cards-container{
     display: flex;
@@ -214,7 +246,7 @@ section{
 /* Products */
 .products-container{
     padding: 10px;
-    
+    max-width: var(--max-width);
 
     /*
     background: pink;
@@ -225,33 +257,48 @@ section{
     
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 10px;
+    gap: 20px;
 }
 
 
 .product-card{
     display: flex;
-    gap: 8px;
+    gap: 10px;
     flex-direction: column;
-    border: 2px solid  black;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 3px;
     background: white;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+    box-shadow: 1px 1px 2px 2px black;
+    /* 
+    background: #941717; 
+    border: 2px solid  black;
+    */
 }
 
-.image-product{
+.product-image{
     height: 300px;
     width: 100%;
     object-fit: contain;
-    background: lightblue;
+    /* background: #087685; */
 }
 
-.description{
-    height: 100px;
+.title-product{
+    /* background: #ec4a09; */
+}
+
+.product-description{
+    height: 80px;
     overflow: auto;
     width: 100%;
+    padding: 10px 5px;
+    /* background: #620ac7; */
+}
+
+.product-price{
+    font-size: 24px;
+    font-weight: 800;
 }
 
 .button-container{
@@ -259,22 +306,19 @@ section{
     justify-content: center;
     align-items: center;
     gap: 15px;
-    bottom: 2px;
-    position: relative;
-    background: rgb(236, 175, 7);
     width: 100%;
+    /* background: #ecaf07; */
 }
 
 .btn, .btn-cart{
     background: #167fa1;
+    color: white;
+    font-weight: 500;
     padding: 10px 30px;
     border: none;
     border-radius: 10px;
     text-align: center;
     font-size: 16px;
-    position: absolute;
-    bottom: 0px;
-    display: block;
     width: 80%;
 }
 
@@ -298,6 +342,11 @@ section{
     gap: 20px;
     justify-content: center;
     align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 15px 1px #057e45;
+    max-height: 80vh;
+    max-width: var(--max-width);
 }
 
 .contact-container form{
@@ -305,9 +354,10 @@ section{
     gap: 20px;
     flex-direction: column;
     align-items: center;
-    width: 50%;
+    width: 30%;
     padding: 10px;
-    background: blue;
+    /* background: blue; */
+    
 }
 
 .input-container{
@@ -316,31 +366,37 @@ section{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
-
     width: 100%;
     max-width: 500px;
-    background: cadetblue;
     padding: 5px;
+    /*
+    background: cadetblue;
+    border-radius: 10px;
+    box-shadow: 1px 1px 15px 1px #057e45;
+    */
 }
 
 .input-container label{
     font-size: 20px;
+    width: 100%;
+    text-align: left;
 }
 
 .input-container input{
-    border-radius: 5px;
     height: 25px;
     width: 100%;
     text-align: center;
     font-size: 20px;
+    border: none;
+    border-bottom: 1px solid black;
 }
 
 .contact-container img{
     max-width: 100%;
-    max-height: 100%;
+    height: 70%;
     width: 50%;
     border-radius: 10px;
+    padding: 5px;
 }
 
 footer{
@@ -350,6 +406,27 @@ footer{
     align-items: center;
     gap: 20px;
     width: 100%;
-    height: 80px;
-    background: red;
+    height: 120px;
+    background: var(--bg-green);
+}
+
+footer p{
+    color: white;
+    font-size: 22px;
+}
+
+.developer{
+    color: white;
+    text-decoration: underline;
+    animation: pulse .5s infinite linear alternate-reverse;
+}
+
+
+@keyframes pulse {
+    to{
+        text-decoration: none;
+    }
+    from{
+        text-decoration: underline;
+    }
 }

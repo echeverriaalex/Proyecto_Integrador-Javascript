@@ -1,0 +1,30 @@
+@media (max-width: 882px){
+    header{
+        padding: 20px;
+        justify-content: space-between;
+    }
+
+    .menu-label{
+        display: flex;
+    }
+    
+    .navbar-list{
+        width: 100%;
+        top: 100px;
+        left: 0;
+        position: absolute;
+        background: #069c56;
+        flex-direction: column;
+        display: none;
+    }
+
+    #menu-toggle:checked + .navbar-list{
+        display: flex;
+    }
+
+
+    .menu-label ⁓ #menu-toggle:checked  {
+        display: none;
+
+    }
+}
