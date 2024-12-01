@@ -43,8 +43,7 @@ body{
 
 /* Header */
 header{
-    background: #069c56;
-    
+    background: #069c56;    
     /*
     background: linear-gradient(30deg, #0a8bc7, #47e2e2, #00ffff, #eee7e7);
     background: #0f0f0f96;
@@ -75,14 +74,14 @@ header{
     /* background: green; */
 }
 
-.menu-label{
+.menu-bars{
     display: flex;
     gap: 5px;
     flex-direction: column;
     cursor: pointer;
 }
 
-.menu-label, #menu-toggle{
+.menu-bars, #menu-toggle{
     display: none;
 }
 
@@ -146,6 +145,7 @@ section{
     justify-content: center;
     align-items: center;
     width: 100%;
+    padding: 10px;
     /* 
     border-radius: 10px;
     max-width: var(--max-width);
@@ -345,19 +345,17 @@ section{
     padding: 10px;
     border-radius: 10px;
     box-shadow: 1px 1px 15px 1px #057e45;
-    max-height: 80vh;
     max-width: var(--max-width);
 }
 
-.contact-container form{
+.contact-form{
     display: flex;
-    gap: 20px;
     flex-direction: column;
     align-items: center;
+    justify-content: space-around;
+    gap: 10px;
     width: 30%;
     padding: 10px;
-    /* background: blue; */
-    
 }
 
 .input-container{

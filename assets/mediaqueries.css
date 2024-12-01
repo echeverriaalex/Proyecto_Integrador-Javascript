@@ -4,27 +4,50 @@
         justify-content: space-between;
     }
 
-    .menu-label{
+    .logo{
+        /*background: red;*/
+        max-height: 30px;
+        max-width: 30px;
+    }
+
+    .navbar{
+        padding: 0px;
+    }
+
+    .menu-bars{
         display: flex;
     }
     
     .navbar-list{
-        width: 100%;
-        top: 100px;
-        left: 0;
+        width: 90%;
+        top: 70px;
+        right: 0;
         position: absolute;
         background: #069c56;
         flex-direction: column;
         display: none;
+        border-radius: 0 0 10px 10px;
     }
 
     #menu-toggle:checked + .navbar-list{
         display: flex;
+        animation: slidedown 1s linear;
     }
-
 
     .menu-label ⁓ #menu-toggle:checked  {
         display: none;
 
+    }
+
+    @keyframes slidedown {
+        from{
+            transform: translateY(-100%);
+            transform: skew(0px);
+        }
+
+        to{
+            transform: translateY(0%);
+            transform: skew(250px);
+        }
     }
 }
