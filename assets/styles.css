@@ -30,10 +30,10 @@ html{
 }
 
 body{
+    /*
     display: flex;
     flex-direction: column;
     gap: 30px;
-    /*
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -132,6 +132,7 @@ header{
 /* Main */
 
 main{
+    margin: 2px 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -225,21 +226,47 @@ section{
     /* width: 70%; */
 }
 
-
-
 .cards-container{
     display: flex;
-    gap: 10px;
+    gap: 20px;
     justify-content: center;
-    align-items: center;
-    padding: 10px;
-    background: greenyellow;
+    padding: 40px;
+    /*background: greenyellow;*/
+    width: 100%;
+    max-width: var(--max-width);
+    border-radius: 10px;
+    box-shadow: 1px 1px 15px 1px #c0c0c0;
 }
 
 .info-card{
-    height: 400px;
-    width: 400px;
-    background: red;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 30px;
+    width: 30%;
+    box-shadow: 1px 1px 15px 1px #c0c0c0;
+}
+
+.card-title{
+    font-family: "Doto", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 20px;
+    font-variation-settings: "ROND" 0;
+}
+
+
+
+.card-image{
+    width: 80px;
+}
+
+.card-description{
+    max-width: 80%;
+    font-size: 17px;
 }
 
 
@@ -344,7 +371,9 @@ section{
     align-items: center;
     padding: 10px;
     border-radius: 10px;
-    box-shadow: 1px 1px 15px 1px #057e45;
+    /*box-shadow: 1px 1px 15px 1px #057e45;*/
+    box-shadow: 1px 1px 15px 1px #c0c0c0;
+    width: 100%;
     max-width: var(--max-width);
 }
 
@@ -354,7 +383,6 @@ section{
     align-items: center;
     justify-content: space-around;
     gap: 10px;
-    width: 30%;
     padding: 10px;
 }
 

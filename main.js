@@ -40,21 +40,27 @@ const producstCatalog = document.querySelector('#products-catalog');
 
 
 const getAllProducts = async(url)=>{
-  let result = await fetch(url)
-    .then(res => {
-        if(!res.ok){
-          console.log('API Error');
-          return
-        }
-        return res.json()
-      }
-    )
-    .then(data => {
-      return data.products;
-    })
+
+  try{
+    const response = await fetch(url)
+
+    if(!response.ok){
+      console.log('API Error');
+      return
+    }
+
+    const result = await response.json().then(data => data.products)
+    const datafinal = result
+
+
+    console.log("Data Final ---> " + datafinal);
+    return datafinal
+  }
+  catch(err){
+    console.log("Se ha producido un error desconocido -> " + err);
+  }
   
-  console.log("result dentro de la funcion --> " + result);
-  
+  console.log("final llamado de la api ");
 }
 
 
@@ -112,19 +118,8 @@ const rederProducts = (result) =>{
 const init = () =>{
   let productList = getAllProducts(UrlAllProducts)
   
-  console.log("Mostrando productos --> " + productList);
-  
-
-
-
+  //console.log("Mostrando productos --> " + productList);
   //producstCatalog.innerHTML = rederProducts(productList);
-
-
-
-  
-
 }
-
-
 
 init();

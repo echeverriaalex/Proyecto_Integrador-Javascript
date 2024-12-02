@@ -50,4 +50,14 @@
             transform: skew(250px);
         }
     }
+
+
+
+    .cards-container{
+        flex-direction: column;
+    }
+
+    .info-card{
+        width: 100%;
+    }
 }
