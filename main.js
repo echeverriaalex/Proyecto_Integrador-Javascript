@@ -38,46 +38,6 @@ setupCounter(document.querySelector('#counter'))
 const UrlAllProducts = 'https://dummyjson.com/products?limit=0'
 const producstCatalog = document.querySelector('#products-catalog');
 
-
-const getAllProducts = async(url)=>{
-
-  try{
-    const response = await fetch(url)
-
-    if(!response.ok){
-      console.log('API Error');
-      return
-    }
-
-    const result = await response.json().then(data => data.products)
-    const datafinal = result
-
-
-    console.log("Data Final ---> " + datafinal);
-    return datafinal
-  }
-  catch(err){
-    console.log("Se ha producido un error desconocido -> " + err);
-  }
-  
-  console.log("final llamado de la api ");
-}
-
-
-/*
-const result = await fetch(UrlAllProducts)
-.then(res => {
-  if(!res.ok){
-    console.log('API Error');
-  }
-    return res.json()
-  }
-)
-.then(data => {
-  return data.products;
-})
-*/
-
 const createProductTemplate = (product)=>{
   const {id, title, description, category, price, stock, tags, brand, 
   sku, meta, images, thumbnail} = product
@@ -95,31 +55,32 @@ const createProductTemplate = (product)=>{
   </div>`
 }
 
-/*
-const rederProducts = () =>{
-  return result.map(product =>{
-      return createProductTemplate(product)
-    }
-  )
-}
-*/
-
-const rederProducts = (result) =>{
-  return result.map(createProductTemplate).join('')
+const getAllProducts = async()=>{
+  try{
+    const response = await fetch(UrlAllProducts)
+    const data = await response.json()
+    return data.products;
+  }
+  catch(err){
+    console.log("Se ha producido un error desconocido -> " + err);
+  }
 }
 
+const rederProducts = async() =>{
+  try {
+    const products = await getAllProducts()
+    let templates = products.map(product => createProductTemplate(product)).join('')
+    producstCatalog.innerHTML = templates;
+    //return templates;
+  } catch (error) {
+    console.log("Error al renderizar los elementos");
+  }
+}
 
-// console.log(rederProducts());
-
-
-
-
-
-const init = () =>{
-  let productList = getAllProducts(UrlAllProducts)
+const init = async() =>{
   
-  //console.log("Mostrando productos --> " + productList);
-  //producstCatalog.innerHTML = rederProducts(productList);
+  
+  rederProducts();
 }
 
 init();
