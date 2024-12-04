@@ -12,26 +12,35 @@
 
     .navbar{
         padding: 0px;
+        gap: 20px;
     }
 
     .menu-bars{
         display: flex;
     }
+
+    .bar{
+        width: 30px;    
+        border: 1px solid white;
+    }
     
     .navbar-list{
-        width: 90%;
+        width: 70%;
         top: 70px;
         right: 0;
         position: absolute;
         background: #069c56;
         flex-direction: column;
         display: none;
+        gap: 5px;
         border-radius: 0 0 10px 10px;
+        border: 1px solid white;
+        border-top: none;
     }
 
     #menu-toggle:checked + .navbar-list{
         display: flex;
-        animation: slidedown 1s linear;
+        animation: slidedown .5s linear;
     }
 
     .menu-label ⁓ #menu-toggle:checked  {
