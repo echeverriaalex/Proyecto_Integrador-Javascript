@@ -274,6 +274,7 @@ section{
 .products-container{
     padding: 10px;
     max-width: var(--max-width);
+    width: 100%;
 
     /*
     background: pink;
