@@ -50,7 +50,10 @@ const createProductTemplate = (product)=>{
     <p class="product-description">${description}</p>
     <p class="product-price">$ ${price}</p>
     <div class="button-container">
-      <button class="btn-cart">Agregar a carrito</button>
+      <button class="btn-cart">
+        Agregar
+        <img class="btn-logo" src="https://img.icons8.com/?size=100&id=ii6Lr4KivOiE&format=png&color=FFFFFF" alt="logo-cart">
+      </button>
     </div>
   </div>`
 }
@@ -66,12 +69,26 @@ const getAllProducts = async()=>{
   }
 }
 
-const rederProducts = async() =>{
+/* 
+// Cree esta funcion unicamente para formatear toda la coleccion de productos
+// a templeates de html y testeando la funcion async y await la desahbilito por que parece redundante
+const structureData = async()=>{
   try {
     const products = await getAllProducts()
     let templates = products.map(product => createProductTemplate(product)).join('')
-    producstCatalog.innerHTML = templates;
-    //return templates;
+    return templates;
+  } catch (error) {
+    console.log("Error al renderizar los elementos");
+  }
+}
+*/
+
+const rederProducts = async() =>{
+  try {
+    const products = await getAllProducts()
+    //producstCatalog.innerHTML = await structureData();
+    let templates = products.map(product => createProductTemplate(product)).join('')
+    producstCatalog.innerHTML = templates;    
   } catch (error) {
     console.log("Error al renderizar los elementos");
   }

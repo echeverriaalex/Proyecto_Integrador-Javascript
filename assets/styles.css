@@ -299,21 +299,17 @@ section{
     justify-content: space-evenly;
     align-items: center;
     box-shadow: 1px 1px 2px 2px black;
-    /* 
-    background: #941717; 
-    border: 2px solid  black;
-    */
 }
 
 .product-image{
-    height: 300px;
+    height: 200px;
     width: 100%;
     object-fit: contain;
-    /* background: #087685; */
 }
 
-.title-product{
+.product-title{
     /* background: #ec4a09; */
+    font-size: 17px;
 }
 
 .product-description{
@@ -348,6 +344,15 @@ section{
     text-align: center;
     font-size: 16px;
     width: 80%;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.btn-logo{
+    height: 14px;
 }
 
 /*

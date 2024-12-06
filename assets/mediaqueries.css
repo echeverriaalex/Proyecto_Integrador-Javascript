@@ -75,18 +75,42 @@
 
     .products-container{
         padding: 10px;
-        max-width: var(--max-width);
-        width: 100%;
-    
-        /*
-        background: pink;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        */
-        
-        display: grid;
         grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+        gap: 10px;
+    }
+
+    /* Products */
+    .product-image{
+        height: 180px;
+        object-fit: cover;
+    }
+
+    .product-title{
+        font-size: 16px;
+    }
+
+    .product-description{
+        font-size: 16px;
+    }
+
+
+
+
+}
+
+
+@media (max-width: 576px){
+
+
+    
+
+
+
+
+
+    .products-container{
+        padding: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
         gap: 10px;
     }
 }
