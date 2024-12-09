@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
+    <link rel="stylesheet" href="./assets/styles.css">
+    <link rel="stylesheet" href="./assets/mediaqueries.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
   </head>
@@ -10,45 +13,124 @@
     <header>
       
       <nav class="navbar">
-        <label class="menu-bars" for="menu-toggle">
+        <label class="menu-label" for="menu-toggle">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
         </label>
-        <a href="#home">
-          <img class="logo" src="https://img.icons8.com/?size=100&id=21240&format=png&color=000000">
-        </a>
-        <input type="checkbox" id="menu-toggle">
         <ul class="navbar-list">
-          <li><a href="#home">Home</a></li>
-          <li><a href="">About us</a></li>
+          <li><a href="#home">Inicio</a></li>
+          <li><a href="#about-us">Sobre nosotros</a></li>
           <li><a href="#services">Servicios</a></li>
           <li><a href="#products">Products</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
-      </nav>
+      
+        
+        <div class="cart-label">
+          <img class="cart-logo" src="https://img.icons8.com/?size=100&id=QVQY51sDgy1I&format=png&color=000000">
+        </div>
 
-      <div>
-        <label for="menu-cart">Tu carrito</label>
-        <input type="checkbox" id="menu-cart">
-        <img class="logo" src="https://img.icons8.com/?size=100&id=DPpC9zJbSyVk&format=png&color=000000">
-        <h3 id="count-cart">(0)</h3>
-      </div>
-      <ul class="cart-list"></ul>
+        <div class="cart">
+          <div class="header-cart">
+            <div class="cart-cross">
+              <span class="cross"></span>
+              <span class="cross"></span>
+            </div>
+            <h2>Tus productos</h2>
+          </div>
+          <div class="cart-container">
+            <div class="item-cart">
+              <img class="cart-item-image" src="https://img.icons8.com/?size=100&id=ii6Lr4KivOiE&format=png&color=FFFFFF" alt="foto del producto en el carrito">
+              <p class="cart-item-title">Ejemplo del titlo</p>
+              <p class="cart-item-price"> $ 1.90 </p>
+            </div>
+            <div class="item-cart">
+              <img class="cart-item-image" src="https://img.icons8.com/?size=100&id=ii6Lr4KivOiE&format=png&color=FFFFFF" alt="foto del producto en el carrito">
+              <p class="cart-item-title">Ejemplo del titlo</p>
+              <p class="cart-item-price"> $ 2.90 </p>
+            </div>
+            <div class="item-cart">
+              <img class="cart-item-image" src="https://img.icons8.com/?size=100&id=ii6Lr4KivOiE&format=png&color=FFFFFF" alt="foto del producto en el carrito">
+              <p class="cart-item-title">Ejemplo del titlo</p>
+              <p class="cart-item-price"> $ 3.90 </p>
+            </div>
+            <div class="item-cart">
+              <img class="cart-item-image" src="https://img.icons8.com/?size=100&id=ii6Lr4KivOiE&format=png&color=FFFFFF" alt="foto del producto en el carrito">
+              <p class="cart-item-title">Ejemplo del titlo</p>
+              <p class="cart-item-price"> $ 4.90 </p>
+            </div>
+            <div class="item-cart">
+              <img class="cart-item-image" src="https://img.icons8.com/?size=100&id=ii6Lr4KivOiE&format=png&color=FFFFFF" alt="foto del producto en el carrito">
+              <p class="cart-item-title">Ejemplo del titlo</p>
+              <p class="cart-item-price"> $ 5.90 </p>
+            </div>
+            <div class="item-cart">
+              <img class="cart-item-image" src="https://img.icons8.com/?size=100&id=ii6Lr4KivOiE&format=png&color=FFFFFF" alt="foto del producto en el carrito">
+              <p class="cart-item-title">Ejemplo del titlo</p>
+              <p class="cart-item-price"> $ 6.90 </p>
+            </div>
+            <div class="item-cart">
+              <img class="cart-item-image" src="https://img.icons8.com/?size=100&id=ii6Lr4KivOiE&format=png&color=FFFFFF" alt="foto del producto en el carrito">
+              <p class="cart-item-title">Ejemplo del titlo</p>
+              <p class="cart-item-price"> $ 7.90 </p>
+            </div>
+            <div class="item-cart">
+              <img class="cart-item-image" src="https://img.icons8.com/?size=100&id=ii6Lr4KivOiE&format=png&color=FFFFFF" alt="foto del producto en el carrito">
+              <p class="cart-item-title">Ejemplo del titlo</p>
+              <p class="cart-item-price"> $ 8.90 </p>
+            </div>
+            <div class="item-cart">
+              <img class="cart-item-image" src="https://img.icons8.com/?size=100&id=ii6Lr4KivOiE&format=png&color=FFFFFF" alt="foto del producto en el carrito">
+              <p class="cart-item-title">Ejemplo del titlo</p>
+              <p class="cart-item-price"> $ 9.90 </p>
+            </div>
+            <div class="item-cart">
+              <img class="cart-item-image" src="https://img.icons8.com/?size=100&id=ii6Lr4KivOiE&format=png&color=FFFFFF" alt="foto del producto en el carrito">
+              <p class="cart-item-title">Ejemplo del titlo</p>
+              <p class="cart-item-price"> $ 10.90 </p>
+            </div>
+            <div class="item-cart">
+              <img class="cart-item-image" src="https://img.icons8.com/?size=100&id=ii6Lr4KivOiE&format=png&color=FFFFFF" alt="foto del producto en el carrito">
+              <p class="cart-item-title">Ejemplo del titlo</p>
+              <p class="cart-item-price"> $ 11.90 </p>
+            </div>
+          </div>
+          <span class="divider"></span>
+          <div class="total-container">
+            <div class="cart-total">
+              <p>Total: </p>
+              <span class="total"> $1000</span>
+              <button class="btn-buy">Comprar</button>
+              <button class="btn-delete">Vaciar carrito</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="overlay show-overlay"></div>
+      </nav>
+      
     </header>
+    
+    
     
     <main id="home">
 
       <section class="hero">
         <div class="hero-container">
           <div class="title-container">
-            <h1 class="title">Mega Store</h1>
+            <h1 class="title">MEGA_BUY</h1>
+            <p>Todo los que buscas lo vendemos nosotros al mejor precio, todo al alcance de tus manos!</p>
+          </div>          
+          <div class="img-hero">
+            <img src="./assets/images/hero.jpg" alt="">
           </div>
-          <p>Todo los que buscas lo vendemos nosotros al mejor precio, todo accesible para vos!</p>
         </div>
-        <div class="img-hero">
-          <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXhmN2k3emN2ZjB1bDRndzI1Nm5qc2FteGUzaXY5MnJ0ejlnaG9hZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l41YiL3ykOps5Un9C/giphy.gif" alt="">
-        </div>
+      </section>
+
+
+      <section id="about-us">
+        <h2>Somos una tienda online de disversos productos</h2>
       </section>
 
 
