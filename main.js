@@ -1,6 +1,6 @@
 //import './style.css'
-import './assets/styles.css'
-import './assets/mediaqueries.css'
+//import './assets/styles.css'
+//import './assets/mediaqueries.css'
 import javascriptLogo from './javascript.svg'
 import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.js'
@@ -37,6 +37,12 @@ setupCounter(document.querySelector('#counter'))
 
 const UrlAllProducts = 'https://dummyjson.com/products?limit=0'
 const producstCatalog = document.querySelector('#products-catalog');
+
+const cartBtn = document.querySelector(".cart-label");
+const cartMenu = document.querySelector(".cart");
+
+const overlay = document.querySelector('.overlay');
+
 
 const createProductTemplate = (product)=>{
   const {id, title, description, category, price, stock, tags, brand, 
@@ -94,10 +100,45 @@ const rederProducts = async() =>{
   }
 }
 
+
+
+const toggleCart = () =>{
+  console.log("click en el cart");
+  
+  cartMenu.classList.toggle("open-cart");
+
+
+  /*
+  if(barsMenu.classList.contains("open-menu")){
+      barsMenu.classList.remove("open-menu");
+      return
+  }
+  */
+  overlay.classList.toggle('show-overlay');
+  
+}
+
+const closeOnOverlayClick = ()=>{
+  cartMenu.classList.remove("open-cart");
+  barsMenu.classList.remove("open-menu");
+  overlay.classList.remove("show-overlay");
+}
+
+const closeAllOnScroll = ()=>{
+  cartMenu.classList.remove("open-cart");
+}
+
+
+
 const init = async() =>{
   
   
-  rederProducts();
+  //rederProducts();
+
+
+  cartBtn.addEventListener("click", toggleCart)
+  overlay.addEventListener("click", closeOnOverlayClick)
+  window.addEventListener("scroll", closeAllOnScroll)
 }
 
 init();
