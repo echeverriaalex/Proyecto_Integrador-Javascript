@@ -38,10 +38,16 @@ setupCounter(document.querySelector('#counter'))
 const UrlAllProducts = 'https://dummyjson.com/products?limit=0'
 const producstCatalog = document.querySelector('#products-catalog');
 
+
+const menuBtn = document.querySelector('.menu-label');
+const barsMenu = document.querySelector('.navbar-list');
+
 const cartBtn = document.querySelector(".cart-label");
 const cartMenu = document.querySelector(".cart");
 
 const overlay = document.querySelector('.overlay');
+
+const cartCross = document.querySelector('.cart-cross');
 
 
 const createProductTemplate = (product)=>{
@@ -62,6 +68,25 @@ const createProductTemplate = (product)=>{
       </button>
     </div>
   </div>`
+}
+
+const createCartProductTemplate = (item)=>{
+  const {name, bid, quantity, img, id} = item;
+  return `
+      <div class="cart-item">
+          <img src=${img} alt="NFT del carrito">
+          <div class="item-info">
+              <h3 class="item-title">${name}</h3>
+              <p class="item-bid">Current bid</p>
+              <span class="item-price">${bid}</span>
+          </div>
+          <div class="item-handler">
+              <span class="quantity-handler down" data-id=${id}>-</span>
+              <span class="item-quantity">${quantity}</span>
+              <span class="quantity-handler up" data-id=${id}>+</span>
+          </div>
+      </div>
+  `;
 }
 
 const getAllProducts = async()=>{
@@ -100,22 +125,28 @@ const rederProducts = async() =>{
   }
 }
 
-
-
-const toggleCart = () =>{
-  console.log("click en el cart");
-  
-  cartMenu.classList.toggle("open-cart");
-
-
-  /*
-  if(barsMenu.classList.contains("open-menu")){
-      barsMenu.classList.remove("open-menu");
+const toggleMenu = () =>{
+  barsMenu.classList.toggle("open-menu");
+  if(cartMenu.classList.contains("open-cart")){
+      cartMenu.classList.remove("open-cart");
       return
   }
-  */
+  overlay.classList.toggle("show-overlay");
+}
+
+const toggleCart = () =>{
+  cartMenu.classList.toggle("open-cart");
+  if(barsMenu.classList.contains("open-menu")){
+    barsMenu.classList.remove("open-menu");
+    return
+  }
   overlay.classList.toggle('show-overlay');
-  
+}
+
+const closeOnClick = (e)=>{
+  if(e.target.classList.contains("navbar-link")) return
+  barsMenu.classList.remove("open-menu");
+  overlay.classList.remove("show-overlay");
 }
 
 const closeOnOverlayClick = ()=>{
@@ -135,8 +166,10 @@ const init = async() =>{
   
   //rederProducts();
 
-
+  menuBtn.addEventListener("click", toggleMenu)
+  barsMenu.addEventListener("click", closeOnClick);
   cartBtn.addEventListener("click", toggleCart)
+  cartCross.addEventListener("click", toggleCart)
   overlay.addEventListener("click", closeOnOverlayClick)
   window.addEventListener("scroll", closeAllOnScroll)
 }
