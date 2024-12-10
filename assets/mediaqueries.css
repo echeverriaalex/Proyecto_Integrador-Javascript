@@ -4,11 +4,12 @@
         justify-content: space-between;
     }
 
+    /*
     .logo{
-        /*background: red;*/
         max-height: 30px;
         max-width: 30px;
     }
+    */
 
     .navbar{
         padding: 0px;
@@ -18,12 +19,7 @@
     .menu-label{
         display: flex;
     }
-
-    .bar{
-        width: 30px;    
-        border: 1px solid white;
-    }
-    
+        
     .navbar-list{
         width: 96%;
         top: 60px;
@@ -36,16 +32,7 @@
         border-radius: 0 0 10px 10px;
         border: 1px solid white;
         border-top: none;
-    }
-
-    #menu-toggle:checked + .navbar-list{
-        display: flex;
         animation: slidedown .5s linear;
-    }
-
-    .menu-label ⁓ #menu-toggle:checked  {
-        display: none;
-
     }
 
     @keyframes slidedown {
@@ -53,7 +40,6 @@
             transform: translateY(-100%);
             transform: skew(0px);
         }
-
         to{
             transform: translateY(0%);
             transform: skew(250px);
@@ -69,9 +55,6 @@
     .info-card{
         width: 100%;
     }
-
-
-
 
     .products-container{
         padding: 10px;
