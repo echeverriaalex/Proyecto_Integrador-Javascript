@@ -38,10 +38,11 @@ setupCounter(document.querySelector('#counter'))
 const UrlAllProducts = 'https://dummyjson.com/products?limit=0'
 const producstCatalog = document.querySelector('#products-catalog');
 
-
+// Elementos del menu
 const menuBtn = document.querySelector('.menu-label');
 const barsMenu = document.querySelector('.navbar-list');
 
+// Elementos del carrito
 const cartBtn = document.querySelector(".cart-label");
 const cartMenu = document.querySelector(".cart");
 
@@ -53,6 +54,10 @@ const cartCross = document.querySelector('.cart-cross');
 const createProductTemplate = (product)=>{
   const {id, title, description, category, price, stock, tags, brand, 
   sku, meta, images, thumbnail} = product
+
+
+  let quantity = 0;
+
   return `
   <div class="product-card">
     <img class="product-image" src="${images[0]}" alt="Imagen del producto">
@@ -61,6 +66,15 @@ const createProductTemplate = (product)=>{
     <h2 class="product-title">${title}</h2>
     <p class="product-description">${description}</p>
     <p class="product-price">$ ${price}</p>
+
+    <!--
+    <div class="quantity-container">
+      <span class="quantity-handler down" data-id=${id}>-</span>
+      <span class="item-quantity">${quantity}</span>
+      <span class="quantity-handler up" data-id=${id}>+</span>
+    </div>
+    -->
+
     <div class="button-container">
       <button class="btn-cart">
         Agregar
@@ -126,7 +140,10 @@ const rederProducts = async() =>{
 }
 
 const toggleMenu = () =>{
+  console.log("click en menu");
+  
   barsMenu.classList.toggle("open-menu");
+  console.log(barsMenu);
   if(cartMenu.classList.contains("open-cart")){
       cartMenu.classList.remove("open-cart");
       return
@@ -155,23 +172,27 @@ const closeOnOverlayClick = ()=>{
   overlay.classList.remove("show-overlay");
 }
 
-const closeAllOnScroll = ()=>{
-  cartMenu.classList.remove("open-cart");
+const closeOnScroll = ()=>{
+  if(barsMenu.classList.contains("open-menu") || cartMenu.classList.contains("open-cart")){
+      cartMenu.classList.remove("open-cart");
+      barsMenu.classList.remove("open-menu");
+      overlay.classList.remove("show-overlay");
+  }
 }
 
 
 
 const init = async() =>{
-  
-  
-  //rederProducts();
+  rederProducts();
 
   menuBtn.addEventListener("click", toggleMenu)
   barsMenu.addEventListener("click", closeOnClick);
+
   cartBtn.addEventListener("click", toggleCart)
   cartCross.addEventListener("click", toggleCart)
   overlay.addEventListener("click", closeOnOverlayClick)
-  window.addEventListener("scroll", closeAllOnScroll)
+
+  window.addEventListener("scroll", closeOnScroll);
 }
 
 init();

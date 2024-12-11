@@ -45,6 +45,7 @@
 html{
     scroll-behavior: smooth;
     scroll-padding-top: 100px;
+    /*background: var(--background);*/
 }
 
 /* Header */
@@ -73,10 +74,6 @@ header{
 }
 
 .menu-label{
-    display: flex;
-    gap: 5px;
-    flex-direction: column;
-    cursor: pointer;
     display: none;
 }
 
@@ -118,8 +115,32 @@ header{
     border-radius: 6px;
 }
 
-.white{
-    color: white;
+.cart-icon {
+    font-weight: 600;
+    border-radius: 10px;
+    font-size: 18px;
+    margin-right: 1rem;
+    color: var(--text-white);
+    cursor: pointer;
+    position: relative;
+}
+
+.cart-bubble {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    text-align: center;
+    background: var(--primary);
+    color: var(--text-white);
+    font-size: 10px;
+    font-weight: 500;
+    height: 18px;
+    width: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 1px;
+    border-radius: 50%;
 }
 
 /* Cart */
@@ -139,6 +160,8 @@ header{
     min-width: 375px;
     transform: translate(200%);
     transition: all 0.5s cubic-bezier(0.92, 0.01, 0.35, 0.99);
+    /* Si pongo display none no hace la animacion translate*/
+    /*display: none;*/
 }
 
 .cart::-webkit-scrollbar{
@@ -173,6 +196,7 @@ header{
     cursor: pointer;
 }
 
+/*
 .cart-cross span{
     height: 1.5px;
     width: 30px;
@@ -191,6 +215,7 @@ header{
     top: 0;
     transform: rotate(225deg);
 }
+*/
 
 .cart-container{
     display: flex;
@@ -198,17 +223,7 @@ header{
     gap: 20px;
 }
 
-/*Toggle del carro*/
-.open-cart{
-    display: flex;
-    transform: translate(0%);
-    transition: all 0.5s cubic-bezier(0.92, 0.01, 0.35, 0.99);
-}
 
-.empty-msg{
-    color: var(--text-gray);
-    font-size: 14px;
-}
 
 .cart-item{
     display: flex;
@@ -260,7 +275,7 @@ header{
     gap: 20px;
 }
 
-.quantity-handler {
+.quantity-handler{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -272,15 +287,20 @@ header{
 
 .item-quantity {
     color: var(--text-gray);
+    color: #000;
 }
 
 .up {
     border: 1px solid var(--electric);
+    background: green;
 }
 
 .down {
     background-color: var(--secondary);
     border: 1px solid var(--electric);
+    background: red;
+    color: white;
+    font-weight: 800;
 }
 
 .divider {
@@ -349,7 +369,17 @@ header{
 
 
 
+/*Toggle del carro*/
+.open-cart{
+    display: flex;
+    transform: translate(0%);
+    transition: all 0.5s cubic-bezier(0.92, 0.01, 0.35, 0.99);
+}
 
+.empty-msg{
+    color: var(--text-gray);
+    font-size: 14px;
+}
 
 
 
@@ -446,12 +476,6 @@ section{
     width: 100%;
     padding: 30px;
     background: linear-gradient(var(--bg-green) , white);
-    
-    /*
-    max-width: 1200px;
-    background: linear-gradient(blue, red);
-    background: linear-gradient(40deg, black, gray, white);
-    */
 }
 
 .hero-container{
@@ -494,7 +518,6 @@ section{
     }
 }
 
-
 .title-container p{
     font-size: 20px;
     font-family: "Didact Gothic", sans-serif;
@@ -507,11 +530,6 @@ section{
     font-weight: 900;
     font-variation-settings: "ROND" 0;
     max-width: 600px;
-}
-
-.title-container img{
-    height: 50px;
-    width: 50px;
 }
 
 .hero img{
@@ -567,19 +585,10 @@ section{
     padding: 10px;
     max-width: var(--max-width);
     width: 100%;
-
-    /*
-    background: pink;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    */
-    
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
 }
-
 
 .product-card{
     display: flex;
@@ -591,6 +600,8 @@ section{
     justify-content: space-evenly;
     align-items: center;
     box-shadow: 1px 1px 2px 2px black;
+
+    /*background: gray;*/
 }
 
 .product-image{
@@ -615,6 +626,16 @@ section{
     font-weight: 800;
 }
 
+.quantity-container{
+    width: 100%;
+    /*background: green;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+}
+
 .button-container{
     display: flex;
     justify-content: center;
@@ -637,24 +658,12 @@ section{
     gap: 10px;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .btn-logo{
     height: 14px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
