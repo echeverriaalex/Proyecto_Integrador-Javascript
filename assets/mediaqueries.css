@@ -51,18 +51,12 @@
         display: flex;
     }
 
-
+    /*
     .menu-label{
         gap: 0;
         cursor: pointer;
-        /*
-        display: block;
-        background: red;
-        width: 40px;
-        height: 40px;
-        margin: 0 auto;
-        */
     }
+    */
 
     /*
     .menu-label span:nth-child(1){
