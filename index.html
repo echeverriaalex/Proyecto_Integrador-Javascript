@@ -11,6 +11,7 @@
     <title>MEGA_BUY</title>
   </head>
   <body>
+    
     <header>
       <nav class="navbar">
         <div class="menu-label">
@@ -44,14 +45,17 @@
             </div>
             <h2>Tus productos</h2>
           </div>
-          <div class="cart-container"></div>
-          <span class="divider"></span>
-          <div class="cart-total">
-            <p>Total: </p>
-            <span class="total"> $1000</span>
+          <div class="cart-body">
+            <p class="cart-message hidden"></p>
+            <div class="cart-container"></div>
+            <span class="divider"></span>
+            <div class="cart-total">
+              <p>Total: </p>
+              <span class="total"> $1000</span>
+            </div>
+            <button class="btn-buy">Comprar</button>
+            <button class="btn-delete">Vaciar carrito</button>
           </div>
-          <button class="btn-buy">Comprar</button>
-          <button class="btn-delete">Vaciar carrito</button>
         </div>
         <div class="overlay"></div>
       </nav>
@@ -203,6 +207,11 @@
         <a class="developer" href="https://alexnahuelecheverria.vercel.app/">Alex Nahuel Echeverria</a>
       </p>
     </footer>
+    <div class="add-modal">
+      <div class="cart-label-modal">
+        <p>Ver carrito</p>
+      </div>
+    </div>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
