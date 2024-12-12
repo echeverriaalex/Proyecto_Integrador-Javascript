@@ -375,7 +375,7 @@ const init = async() =>{
   window.addEventListener("DOMContentLoaded", renderCart);
 
   
-  
+  updateCartState();
 }
 
 init();
