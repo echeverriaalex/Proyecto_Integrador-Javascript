@@ -50,6 +50,37 @@
         cursor: pointer;
         display: flex;
     }
+
+
+    .menu-label{
+        gap: 0;
+        cursor: pointer;
+        /*
+        display: block;
+        background: red;
+        width: 40px;
+        height: 40px;
+        margin: 0 auto;
+        */
+    }
+
+    /*
+    .menu-label span:nth-child(1){
+        transform: rotate(140deg);
+    }
+
+    .menu-label span:nth-child(2){
+        display: none;
+        transform: rotate(225deg);
+    }
+
+    .menu-label span:nth-child(3){
+        transform: rotate(225deg);
+    }
+    */
+
+
+
         
     .navbar-list{
         top: 65px;
@@ -81,6 +112,30 @@
             transform: skew(250px);
         }
     }
+
+
+
+    /*
+    .cart-cross span{
+        height: 1.5px;
+        width: 30px;
+        background: black;
+        transition: transform 0.3s;
+    }
+
+    .cart-cross span:nth-child(1){
+        position: relative;
+        top: 0;
+        transform: rotate(135deg);
+    }
+
+    .cart-cross span:nth-child(2){
+        position: relative;
+        top: 0;
+        transform: rotate(225deg);
+    }
+    */
+
 
 
 

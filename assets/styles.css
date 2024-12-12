@@ -32,6 +32,8 @@
     /* Decoration */
     --fire: #ff6d00;
     --electric: #64d3ff;
+    --bg-dark: #333333;
+    --bg-gray: #e2e2e2f5
 }
 
 *{
@@ -45,14 +47,16 @@
 html{
     scroll-behavior: smooth;
     scroll-padding-top: 100px;
-    /*background: var(--background);*/
+    background: var(--background);
+    background: var(--bg-gray);
+    background: var(--bg-dark);
 }
 
 /* Header */
 header{
     background: #069c56;
     width: 100%;
-    position: sticky;
+    position: fixed;
     top: 0;
     display: flex;
     justify-content: space-evenly;
@@ -153,7 +157,8 @@ header{
     border-left: 1px solid white;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    /*gap: 30px;*/
+    gap: 10px;
     height: calc(100vh - 65px);
     overflow-y: scroll;
     z-index: 2;
@@ -176,6 +181,7 @@ header{
     align-items: center;
     padding: 15px;
     border-radius: 10px;
+    /*background: violet;*/
 }
 
 .header-cart h2,
@@ -196,26 +202,20 @@ header{
     cursor: pointer;
 }
 
-/*
-.cart-cross span{
-    height: 1.5px;
-    width: 30px;
-    background: black;
-    transition: transform 0.3s;
+
+
+.cart-body{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
-.cart-cross span:nth-child(1){
-    position: relative;
-    top: 0;
-    transform: rotate(135deg);
+.cart-message{
+    text-align: center;
+    color: white;
+    font-size: 20px;
 }
-
-.cart-cross span:nth-child(2){
-    position: relative;
-    top: 0;
-    transform: rotate(225deg);
-}
-*/
 
 .cart-container{
     display: flex;
@@ -223,16 +223,15 @@ header{
     gap: 20px;
 }
 
-
-
 .cart-item{
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 20px;
     padding: 10px 20px;
-    background: #0aac60;
+    background: #f3f3f3;
     border: 1px solid var(--electric);
+    border: 1px solid black;
     border-radius: 10px;
 }
 
@@ -245,16 +244,19 @@ header{
     display: flex;
     flex-direction: column;
     min-width: 110px;
+    width: 100%;
 }
 
 .item-title {
     color: var(--text-white);
     font-weight: 600;
     font-size: 14px;
+    color: black;
 }
 
 .item-bid {
     color: var(--text-gray);
+    color: black;
     font-weight: 300;
     font-size: 12px;
 }
@@ -266,6 +268,8 @@ header{
     -webkit-background-clip: text;
     font-size: 16px;
     font-weight: 800;
+    color: white;
+    color: black;
 }
 
 .item-handler {
@@ -290,24 +294,38 @@ header{
     color: #000;
 }
 
-.up {
-    border: 1px solid var(--electric);
-    background: green;
+.up,
+.down,
+.delete-icon{
+    cursor: pointer;
 }
 
-.down {
+.up{
+    border: 1px solid var(--electric);
+    border: 1px solid black;
+    background-color: var(--secondary);
+}
+
+.down{
     background-color: var(--secondary);
     border: 1px solid var(--electric);
-    background: red;
+    border: 1px solid black;
     color: white;
     font-weight: 800;
+}
+
+.delete-icon{
+    color: red;
+    font-size: 20px;
 }
 
 .divider {
     margin-top: 20px;
     border: 0.5px solid var(--electric);
+    border: 0.5px solid black;
     width: 100%;
 }
+
 
 .cart-total {
     display: flex;
@@ -407,6 +425,7 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 20px;
     color: var(--text-white);
     background-color: green;
     position: fixed;
@@ -421,6 +440,19 @@ header{
     transition: all 0.5s ease-in;
 }
 
+.cart-label-modal{
+    cursor: pointer;
+    padding: 5px 10px;
+    background: #167fa1;
+    border-radius: 6px;
+}
+
+.flex-column-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
 
 
@@ -468,6 +500,7 @@ section{
 }
 
 .hero{
+    margin-top: 65px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -476,6 +509,7 @@ section{
     width: 100%;
     padding: 30px;
     background: linear-gradient(var(--bg-green) , white);
+    background: linear-gradient(var(--bg-green) , var(--bg-gray));
 }
 
 .hero-container{
@@ -596,7 +630,7 @@ section{
     flex-direction: column;
     padding: 10px;
     border-radius: 3px;
-    background: white;
+    /* background: #c9c2c2; */
     justify-content: space-evenly;
     align-items: center;
     box-shadow: 1px 1px 2px 2px black;
@@ -644,7 +678,9 @@ section{
     width: 100%;
 }
 
-.btn, .btn-cart{
+.btn,
+.btn-add,
+.btn-cart{
     background: #167fa1;
     color: white;
     font-weight: 500;
