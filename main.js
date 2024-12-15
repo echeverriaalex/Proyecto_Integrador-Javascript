@@ -1,40 +1,3 @@
-/*
-  import './style.css'
-  import './assets/styles.css'
-  import './assets/mediaqueries.css'
-  import javascriptLogo from './javascript.svg'
-  import viteLogo from '/vite.svg'
-  import { setupCounter } from './counter.js'
-*/
-// Lista de APis de productos
-// https://dummyjson.com/products
-// esto de limit 0 es para mostrar tooooooodos lo productos de la api
-//https://dummyjson.com/products?limit=0
-
-
-/*
-  document.querySelector('#app').innerHTML = `
-    <!--
-    <div>
-      <a href="https://vite.dev" target="_blank">
-        <img src="${viteLogo}" class="logo" alt="Vite logo" />
-      </a>
-      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-        <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-      </a>
-      <h1>Hello Vite!</h1>
-      <div class="card">
-        <button id="counter" type="button"></button>
-      </div>
-      <p class="read-the-docs">
-        Click on the Vite logo to learn more
-      </p>
-    </div>
-    -->
-  `
-  setupCounter(document.querySelector('#counter'))
-*/
-
 // URL API
 const UrlAllProducts = 'https://dummyjson.com/products?limit=0'
 
@@ -71,6 +34,7 @@ const modal = document.querySelector('.add-modal');
 const overlay = document.querySelector('.overlay');
 const cartLabelModal = document.querySelector(".cart-label-modal");
 
+let productList = [];
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 const saveCart = ()=>{
@@ -132,6 +96,7 @@ const structureData = async()=>{
 const rederProducts = async() =>{
   try {
     const products = await getAllProducts()
+    productList = [...products];
     //producstCatalog.innerHTML = await structureData();
     let templates = products.map(product => createProductTemplate(product)).join('')
     productsContainer.innerHTML = templates;    
@@ -197,7 +162,6 @@ const closeOnScroll = ()=>{
   }
 }
 
-
 // Funciones para el carrrito
 const createCartProductTemplate = (item)=>{
   const {id, title, price, thumbnail, quantity} = item;
@@ -206,7 +170,7 @@ const createCartProductTemplate = (item)=>{
         <img src=${thumbnail} alt="NFT del carrito">
         <div class="item-info">
             <h3 class="item-title">${title}</h3>
-            <p class="item-bid">Current bid</p>
+            <p class="item-bid">Unit price</p>
             <span class="item-price">${price}</span>
         </div>
         <div class="item-handler">
@@ -272,8 +236,6 @@ const handleQueantity = (e) => {
   updateCartState();
 }
 
-
-
 const createProductData = (dataset)=>{
   const {id, title, price, thumbnail} = dataset;
   return {id, title, price, thumbnail};
@@ -287,28 +249,8 @@ const renderCart = ()=>{
     if(!cartMessage.classList.contains("hidden")){
       cartMessage.classList.remove("hidden");
     }
-      
-
-
-
-    //productsCart.innerHTML = `<p class="emply-mesg">No hay productos en el carrito</p>`;
-    /*
-    productsCart.classList.add("hidden")
-    cartTotal.classList.add("hidden")
-    btnBuy.classList.add("hidden")
-    btnDelete.classList.add("hidden")
-    divider.classList.add("hidden")
-    if(cartMessage.classList.contains("hidden")){
-      cartMessage.classList.remove("hidden")
-      cartBody.classList.add("flex-column-center");
-      cartMessage.textContent = "No tienes productos en tu carrito."
-    }
-    */
-    //cartBody.classList.toggle("flex-column-center");
     cartMessage.classList.remove("hidden");
-    cartMessage.textContent = "No tienes productos en tu carrito."
-    //cartBody.innerHTML = `<p class="cart-message">No tienes productos en tu carrito.</p>`;
-    //productsCart.innerHTML = `<p class="cart-message">No tienes productos en tu carrito.</p>`;
+    cartMessage.textContent = "No tienes productos en tu carrito.";
     return
   }
   else{
@@ -317,20 +259,6 @@ const renderCart = ()=>{
       componentsContainer.classList.remove("hidden");
       cartMessage.classList.add("hidden");
     }
-      
-    /*
-    cartMessage.classList.add("hidden")
-    productsCart.classList.toggle("hidden")
-    cartTotal.classList.toggle("hidden")
-    btnBuy.classList.toggle("hidden")
-    btnDelete.classList.toggle("hidden")
-    divider.classList.toggle("hidden")
-    if(!cartMessage.classList.contains("hidden")){
-      cartMessage.classList.add("hidden")
-      cartBody.classList.remove("flex-column-center");
-      cartMessage.textContent = ""
-    }
-    */
   }
   productsCart.innerHTML = cart.map(createCartProductTemplate).join("");
 }
@@ -387,13 +315,12 @@ const showModelSuccess = (msg) =>{
   modal.textContent = msg;
       
   setTimeout(()=>{
-      modal.classList.remove("active-modal");
-      //cartLabelModal.addEventListener("click", toggleCart)
+    modal.classList.remove("active-modal");
   }, 3000)
 };
 
 const init = async() =>{
-  //rederProducts();
+  rederProducts();
 
   // Menu
   menuBtn.addEventListener("click", toggleMenu)
