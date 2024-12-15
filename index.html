@@ -11,7 +11,6 @@
     <title>MEGA_BUY</title>
   </head>
   <body>
-    
     <header>
       <nav class="navbar">
         <div class="menu-label">
@@ -27,9 +26,6 @@
           <li><a class="navbar-link" href="#contact">Contact</a></li>
         </ul>
         <div class="cart-label">
-          <!--
-          <img class="cart-logo" src="https://img.icons8.com/?size=100&id=ii6Lr4KivOiE&format=png&color=000000">
-          -->
           <i class="fa-solid fa-cart-shopping cart-icon">
             <div class="cart-bubble">0</div>
           </i>
@@ -46,56 +42,78 @@
             <h2>Tus productos</h2>
           </div>
           <div class="cart-body">
-            <p class="cart-message hidden"></p>
-            <div class="cart-container"></div>
-            <span class="divider"></span>
-            <div class="cart-total">
-              <p>Total: </p>
-              <span class="total"> $1000</span>
+            <p class="cart-message"></p>
+            <div class="components-container">
+              <div class="cart-container"></div>
+              <span class="divider"></span>
+              <div class="cart-total">
+                <p>Total: </p>
+                <span class="total"></span>
+              </div>
+              <button class="btn-buy">Comprar</button>
+              <button class="btn-delete">Vaciar carrito</button>
             </div>
-            <button class="btn-buy">Comprar</button>
-            <button class="btn-delete">Vaciar carrito</button>
           </div>
         </div>
         <div class="overlay"></div>
       </nav>
     </header>
-    
-    
-    
     <main id="home">
-
       <section class="hero">
         <div class="hero-container">
           <div class="title-container">
             <h1 class="title">MEGA_BUY</h1>
-            <p>Todo los que buscas lo vendemos nosotros al mejor precio, todo al alcance de tus manos!</p>
+            <p>Lo que buscas al alcance de tus manos!</p>
           </div>          
           <div class="img-hero">
             <img src="./assets/images/hero.jpg" alt="">
           </div>
         </div>
       </section>
-
-
+      
+      
+      
+      
       <section id="about-us">
-        <h2>Somos una tienda online de disversos productos</h2>
+        <div class="description-container">
+          <h2>Somos la mejor_tienda_online!</h2>
+          <div class="description-card">
+            <img class="description-image" src="https://www.doofinder.com/main-files/uploads/2020/05/producto_rentable_vender_internet.jpg">
+            <p class="text-description">
+              Explora, Arma tu carrito, Pagá como quieras y Recibí tus pedidos en la puerta de tu casa. 
+            </p>
+          </div>
+          <div class="description-card flex-row-reverse">
+            <img class="description-image" src="https://statics.redaccionmayo.com.ar/2023/01/crop/63c1c82aca69a__680x453.webp">
+            <p class="text-description">
+              Desde nuestra plataforma podrás administrar todo! tus compras, tus pagos y tus envíos.
+            </p>
+          </div>
+          <div class="description-card">
+            <img class="description-image" src="https://educatics.ar/wp-content/uploads/ilustracion-de-seguridad-digital.jpg">
+            <p class="text-description">
+              Nos aseguramos de que tus compras sean muy seguras y confiables.
+            </p>
+          </div>
+        </div>
       </section>
 
 
+
       <section id="services">
+        <h2>Nuestros servicios!</h2>
         <div class="cards-container">
           <div class="info-card">
             <img class="card-image" src="https://img.icons8.com/?size=100&id=If_QqvJXRP1Z&format=png&color=000000">
-            <h2 class="card-title">Formas de pago</h2>
+            <h3 class="card-title">Formas de pago</h3>
             <p class="card-description">
-              Vos elegís! aceptamos tarjetas de débito y crédito de todos los bancos, 
-              transferencias y efectivo.
+              Vos elegís! aceptamos tarjetas de débito y crédito
+              transferencias, efectivo y más.
             </p>
           </div>
           <div class="info-card">
             <img class="card-image" src="https://img.icons8.com/?size=100&id=NMslFhyh1Rw8&format=png&color=000000" alt="">
-            <h2 class="card-title">Envíos a todo el país</h2>
+            <h3 class="card-title">Envíos a todo el país</h3>
             <p class="card-description">
               Contamos con servicios de envíos a domicilio a todo el país, 
               entrega de puerta a puerta totalmente confiable.
@@ -103,7 +121,7 @@
           </div>
           <div class="info-card">
             <img class="card-image" src="https://img.icons8.com/?size=100&id=r5lBdUMRGKc6&format=png&color=000000" alt="">
-            <h2 class="card-title">Garantía de 3 meses</h2>
+            <h3 class="card-title">Garantía de 3 meses</h3>
             <p class="card-description">
               Sea el producto que sea que compres tiene 3 meses de garantía
               a partir de la fecha en la que recibas tu pedido.
@@ -111,61 +129,11 @@
           </div>
         </div>
       </section>
-      
-
-      
       <section id="products">
-        <div class="products-container" id="products-catalog">
-
-        </div>
-      </section>      
-
-      <!--
-      <section>
-        <div class="cards-container">
-          <div class="info-card">
-            <img src="" alt="">
-            <h2></h2>
-            <p></p>
-          </div>
-          <div class="info-card">
-            <img src="" alt="">
-            <h2></h2>
-            <p></p>
-          </div>
-          <div class="info-card">
-            <img src="" alt="">
-            <h2></h2>
-            <p></p>
-          </div>
-        </div>
+        <div class="products-container" id="products-catalog"></div>
       </section>
-
-      <section>
-        <div class="cards-container">
-          <div class="info-card">
-            <img src="" alt="">
-            <h2>Hola</h2>
-            <p></p>
-          </div>
-          <div class="info-card">
-            <img src="" alt="">
-            <h2></h2>
-            <p></p>
-          </div>
-          <div class="info-card">
-            <img src="" alt="">
-            <h2></h2>
-            <p></p>
-          </div>
-        </div>
-      </section>
-      -->
-
-      <div id="app"></div>
       <section id="contact">
         <div class="contact-container">
-          
           <form class="contact-form">
             <h2>Contact Us</h2>
             <div class="input-container">
@@ -200,8 +168,6 @@
         </div>
       </section>
     </main>
-
-
     <footer>
       <p>Desarrolado con HTML, CSS y JS by
         <a class="developer" href="https://alexnahuelecheverria.vercel.app/">Alex Nahuel Echeverria</a>
