@@ -39,7 +39,7 @@
     */
 
     .navbar-list{
-        top: 65px;
+        top: 62px;
         position: absolute;
         left: 0;
         width: 100%;
@@ -112,7 +112,8 @@
     }
 
     .title{
-        font-size: 30px;
+        font-size: 40px;
+        text-align: center;
     }
 
     .title-container p{
@@ -121,10 +122,47 @@
         width: 100%;
     }
 
+    /* About us*/
+
+    .title-section{
+        font-size: 24px;
+    }
+
+    .description-image{
+        width: 200px;
+        height: 200px;
+    }
+
+    .text-description{
+        font-weight: 900;
+        font-size: 18px;
+        font-family: "Doto", sans-serif;
+    }
+
+
+
+
+
+
+
+
     /* Cards */
     .cards-container{
         flex-direction: column;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     .info-card{
         width: 100%;
@@ -164,6 +202,18 @@
         border: none;
     }
 
+    /* Main */
+
+    section{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 10px;
+    }
+
+
     /* About us*/
     .description-card{
         display: flex;
@@ -177,9 +227,46 @@
         border: 1px solid white;
     }
 
+
+    .description-image{
+        width: 150px;
+        height: 150px;
+    }
+
+    /* Products */
     .products-container{
-        padding: 10px;
+        padding: 0px;
         grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
         gap: 10px;
+    }
+
+    .product-card{
+        gap: 5px;
+        padding: 5px;
+    }
+
+    .product-title{
+        font-size: 16px;
+    }
+
+    .product-description{
+        text-overflow: ellipsis;
+        font-size: 14px;
+    }
+
+    .product-price{
+        font-size: 20px;
+        font-weight: 800;
+    }
+
+    .btn,
+    .btn-add,
+    .btn-cart{
+        padding: 8px;
+    }
+
+
+    .contact-container img{
+        display: none;
     }
 }
