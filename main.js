@@ -1,5 +1,6 @@
-// URL API
-const UrlAllProducts = 'https://dummyjson.com/products?limit=0'
+// URLs API
+const UrlAllProducts = "https://dummyjson.com/products?limit=0";
+const UrlAllCategories = "https://dummyjson.com/products/categories";
 
 // Elementos del menu
 const menuBtn = document.querySelector('.menu-label');
@@ -23,16 +24,21 @@ const btnDelete  = document.querySelector('.btn-delete');
 const deleteIcon = document.querySelector(".delete-icon");
 const componentsContainer = document.querySelector(".components-container");
 
-
-
 // Elementos de los productos
 const btnAdd = document.querySelector('.btn-add');
 const productsContainer = document.querySelector(".products-container");
+const categoriesContainer = document.querySelector(".categories-container");
 
 // Otros elementos
 const modal = document.querySelector('.add-modal');
 const overlay = document.querySelector('.overlay');
 const cartLabelModal = document.querySelector(".cart-label-modal");
+const form = document.querySelector('.contact-form');
+
+
+const nameMessage = document.querySelector("#name-message");
+
+
 
 let productList = [];
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -41,25 +47,92 @@ const saveCart = ()=>{
   localStorage.setItem('cart', JSON.stringify(cart));
 }
 
+const createCatgoryTemplate = (category)=>{
+  const {slug, name, url} = category;
+  return `<p class="category" data-category="${slug}" data-url="${url}">${name}</p>`
+}
+
+const getAllCategories = async()=>{
+  try{
+    const response = await fetch(UrlAllCategories)
+    const data = await response.json()
+    return data;
+  }
+  catch(err){
+    console.log("Se ha producido un error desconocido al traer las categorias -> " + err);
+  }
+}
+
+const rederCategories = async() =>{
+  try {
+    const categories = await getAllCategories();
+    let templates = categories.map(category => createCatgoryTemplate(category)).join('');
+    categoriesContainer.innerHTML = templates;    
+  } catch (error) {
+    console.log("Error al renderizar las categories" + error);
+  }
+}
+
+const getAllProductsByCategory = async(url)=>{
+  try{
+    const response = await fetch(url)
+    const data = await response.json()
+    return data.products;
+  }
+  catch(err){
+    console.log("Se ha producido un error desconocido al traer las categorias -> " + err);
+  }
+}
+
+const renderProductsByCategoryUrl = async(url) =>{
+  try {
+    const productsCategory = await getAllProductsByCategory(url)
+    console.log("tengo los de la categoria");    
+    let templates = productsCategory.map(product => createProductTemplate(product)).join('')
+    productsContainer.innerHTML = templates;    
+  } catch (error) {
+    console.log("Error al renderizar los elementos de la URL de la categoria --> " + error);
+  }
+}
+
+const renderProductsByCategory = ({target})=>{
+  if(!target.classList.contains("category")) return
+  /*  Traigo todos los elementos del container, y por cada uno que tenga la clase categoria
+    le remuevo la clase active-category si la tiene */
+  categoriesContainer.querySelectorAll(".category")
+    .forEach(category => category.classList.remove("active-category"));
+
+  // Agrego la clase active-category al elemento que se le hizo click
+  target.classList.add("active-category");
+  const urlCategory = target.dataset.url;
+  renderProductsByCategoryUrl(urlCategory);
+}
+
 const createProductTemplate = (product)=>{
-  const {id, title, description, category, price, stock, tags, brand, 
-  sku, meta, images, thumbnail} = product
+  const {id, title, description, price, stock, tags, images, thumbnail} = product
+  let tagsTemplate = tags.map(tag => `<p class="tag-product">${tag}</p>`).join('')
 
   return `
   <div class="product-card">
-    <img class="product-image" src="${images[0]}" alt="Imagen del producto">
-    <!-- <img class="product-image" src="${thumbnail}" alt="Imagen del producto"> -->
-    <!-- <p>${id}</p> -->
+    <div class="image-container-product">
+      <img class="product-image" src="${images[0]}" alt="${title}">
+      <!-- <img class="product-image" src="${thumbnail}" alt="Imagen del producto"> -->
+    </div>
+    <div class="tag-container">
+      ${tagsTemplate}
+    </div>
     <h2 class="product-title">${title}</h2>
     <p class="product-description">${description}</p>
     <p class="product-price">$ ${price}</p>
+    <p>Stock: <span class="stock">${stock}</span></p>
     <div class="button-container">
       <button 
         class="btn-add"
         data-id="${id}"
         data-title="${title}"
         data-price="${price}"
-        data-thumbnail="${thumbnail}"
+        data-thumbnail="${thumbnail}
+        data-stock="${stock}"
         >
         Agregar
         <img class="btn-logo" src="https://img.icons8.com/?size=100&id=ii6Lr4KivOiE&format=png&color=FFFFFF" alt="logo-cart">
@@ -288,8 +361,6 @@ const updateCartState = ()=>{
   saveCart();
   renderCart();
   showCartTotal();
-  //disabledBtn(btnBuy);
-  //disabledBtn(btnDelete);
   renderCartBubble();
 }
 
@@ -308,18 +379,76 @@ const addProduct = ({target}) =>{
   updateCartState();
 }
 
-
 // Otras funciones extras
 const showModelSuccess = (msg) =>{
   modal.classList.add("active-modal");
   modal.textContent = msg;
-      
   setTimeout(()=>{
     modal.classList.remove("active-modal");
   }, 3000)
 };
 
+const verifyLength = (text)=>{
+  if(text.length > 3) return true
+}
+
+const handleSubmit = () =>{
+
+  const name = document.querySelector("#name").value;
+  const email = document.querySelector("#email").value;
+  const phone = document.querySelector("#phone").value;
+  /*
+  const address = document.querySelector("#address").value;
+  const city = document.querySelector("#city").value;
+  const postalCode = document.querySelector("#postal-code").value;
+  */
+  console.log(name);
+
+
+  //name.addEventListener("change", verifyLength(name));
+  
+
+  if(!verifyLength(name)){
+    nameMessage.classList.remove("hidden");
+    nameMessage.textContent = "Debe contener al menos 3 caracteres.";
+    //alert("El nombre debe tener al menos 3 caracteres");
+    return
+  }
+  else{
+    nameMessage.classList.add("hidden");
+  }
+  /*
+  if(!verifyLength(email)){
+    alert("El email debe tener al menos 3 caracteres");
+    return
+  }
+  if(!verifyLength(phone)){
+    alert("El telefono debe tener al menos 3 caracteres");
+    return
+  }
+  if(!verifyLength(address)){
+    alert("La direccion debe tener al menos 3 caracteres");
+    return
+  }
+  if(!verifyLength(city)){
+    alert("La ciudad debe tener al menos 3 caracteres");
+    return
+  }
+  if(!verifyLength(postalCode)){
+    alert("El codigo postal debe tener al menos 3 caracteres");
+    return
+  }
+  */
+  //alert("Gracias por tu compra");
+  //resetCart();
+
+
+
+}
+
+
 const init = async() =>{
+  rederCategories();
   rederProducts();
 
   // Menu
@@ -341,6 +470,14 @@ const init = async() =>{
 
   btnBuy.addEventListener("click", completeBuy)
   btnDelete.addEventListener("click", deleteCart)
+
+
+  categoriesContainer.addEventListener("click", renderProductsByCategory);
+
+
+
+  // Formulario
+  form.addEventListener("submit", handleSubmit);
 
   
   updateCartState();
