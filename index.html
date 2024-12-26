@@ -62,30 +62,40 @@
             <p>Lo que buscas al alcance de tus manos!</p>
           </div>          
           <div class="img-hero">
-            <img src="./assets/images/hero.jpg" alt="">
+            <img src="./assets/images/hero.jpg" alt="Imagen de portada">
           </div>
         </div>
       </section>
       <section id="about-us">
         <div class="section-container">
-          <h2 class="title-section">Somos la mejor_tienda_online!</h2>
-          <div class="description-card">
-            <img class="description-image" src="https://www.doofinder.com/main-files/uploads/2020/05/producto_rentable_vender_internet.jpg">
+          <h2 class="title-section">Somos la mejor tienda_online!</h2>
+          <div class="about-container">
             <p class="text-description">
-              Explora, Arma tu carrito, Pagá como quieras y Recibí tus pedidos en la puerta de tu casa. 
+              En MEGA_BUY te ofrecemos encontrar todo lo que buscas, desde la comodidad de tu hogar.
+              Contamos con una amplia variedad de productos, desde tecnología hasta indumentaria.
+              Nuestro objetivo es que puedas encontrar todo en un solo lugar.
+              Unificamos las mejores tiendas en un solo lugar para vos facilitando tus búsquedas y compras.
             </p>
-          </div>
-          <div class="description-card flex-row-reverse">
-            <img class="description-image" src="https://statics.redaccionmayo.com.ar/2023/01/crop/63c1c82aca69a__680x453.webp">
-            <p class="text-description">
-              Desde nuestra plataforma podrás administrar todo! tus compras, tus pagos y tus envíos.
-            </p>
-          </div>
-          <div class="description-card">
-            <img class="description-image" src="https://educatics.ar/wp-content/uploads/ilustracion-de-seguridad-digital.jpg">
-            <p class="text-description">
-              Nos aseguramos de que tus compras sean muy seguras y confiables.
-            </p>
+            <div class="about-cards-container">
+              <div class="description-card">
+                <img class="description-image" src="https://www.doofinder.com/main-files/uploads/2020/05/producto_rentable_vender_internet.jpg">
+                <p class="text-description">
+                  Explora, Arma tu carrito, Pagá como quieras y Recibí tus pedidos en la puerta de tu casa. 
+                </p>
+              </div>
+              <div class="description-card flex-row-reverse">
+                <img class="description-image" src="https://statics.redaccionmayo.com.ar/2023/01/crop/63c1c82aca69a__680x453.webp">
+                <p class="text-description">
+                  Desde nuestra plataforma podrás administrar todo! tus compras, tus pagos y tus envíos.
+                </p>
+              </div>
+              <div class="description-card">
+                <img class="description-image" src="https://educatics.ar/wp-content/uploads/ilustracion-de-seguridad-digital.jpg">
+                <p class="text-description">
+                  Nos aseguramos de que tus compras sean muy seguras y confiables.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -129,7 +139,7 @@
       <section id="contact">
         <div class="contact-container">
           <form class="contact-form">
-            <h2 class="title-section">Contact Us</h2>
+            <h2 class="title-section">Contacto</h2>
             <div class="input-container">
               <label for="">Nombre *</label>
               <input type="text" name="" id="name">
@@ -163,13 +173,60 @@
       </section>
     </main>
     <footer>
-      <p>Desarrolado con HTML, CSS y JS by
+      <p class="text-description">Empresas asociadas con nosotros</p>
+      <ul class="store-list">
+        <li class="store">
+          <a href="https://www.rickysarkany.com">Sarkani</a>
+        </li>
+        <li class="store">
+          <a href="https://www.perfumeriaspigmento.com.ar/maquillaje">Pigmento</a>
+        </li>
+        <li class="store">
+          <a href="https://www.gamingcity.com.ar">Gaming City</a>
+        </li>
+        <li class="store">
+          <a href="https://tienda.personal.com.ar/celulares">Personal</a>
+        </li>
+        <li class="store">
+          <a href="https://tiendacars.com">Tienda Cars</a>
+        </li>
+        <li class="store">
+          <a href="https://www.rolex.com/es">Rolex</a>
+        </li>
+        <li class="store">
+          <a href="https://ceremony.com.ar">Ceremony</a>
+        </li>
+        <li class="store">
+          <a href="https://www.opensports.com.ar">Open Sports</a>
+        </li>
+        <li class="store">
+          <a href="https://kawasaki.ar/es/">Kawasaki</a>
+        </li>
+        <li class="store">
+          <a href="https://www.tramontina.com.ar">Tramontina</a>
+        </li>
+      </ul>
+      <p class="text-description">Desarrolado con HTML, CSS y JS by
         <a class="developer" href="https://alexnahuelecheverria.vercel.app/">Alex Nahuel Echeverria</a>
       </p>
     </footer>
     <div class="add-modal">
       <div class="cart-label-modal">
         <p>Ver carrito</p>
+      </div>
+    </div>
+    <div class="modal" id="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close-modal">❌</span>
+        </div>
+        <div class="modal-body">
+          <p class="message-modal">Mensaje del modal gracias por su compra</p>
+        </div>
+        <div class="btn-container">
+          <button class="btn-modal btn-ok" id="btn-ok">Aceptar</button>
+          <button class="btn-modal btn-cancel" id="btn-cancel">Cancelar</button>
+        </div>
       </div>
     </div>
     <script type="module" src="/main.js"></script>
