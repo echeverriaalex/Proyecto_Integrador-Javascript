@@ -35,9 +35,20 @@ const overlay = document.querySelector('.overlay');
 const cartLabelModal = document.querySelector(".cart-label-modal");
 const form = document.querySelector('.contact-form');
 
-
 const nameMessage = document.querySelector("#name-message");
+const lastnameMessage = document.querySelector("#lastname-message");
+const emailMessage = document.querySelector("#email-message");
+const phoneMessage = document.querySelector("#phone-message");
+//const textMessage = document.querySelector("#text-message");
 
+// Modal window
+const modalWindow = document.getElementById("modal");
+const closeModalWindow = document.querySelector(".close-modal");
+const messageModalWindow = document.querySelector(".message-modal");
+//const btnModalWindow = document.querySelector(".btn-modal");
+const btnContainerWindow = document.querySelector(".btn-container");
+const btnOkWindow = document.querySelector(".btn-ok");
+const btnCancelWindow = document.querySelector(".btn-cancel");
 
 
 let productList = [];
@@ -87,7 +98,7 @@ const getAllProductsByCategory = async(url)=>{
 const renderProductsByCategoryUrl = async(url) =>{
   try {
     const productsCategory = await getAllProductsByCategory(url)
-    console.log("tengo los de la categoria");    
+    //console.log("tengo los de la categoria");    
     let templates = productsCategory.map(product => createProductTemplate(product)).join('')
     productsContainer.innerHTML = templates;    
   } catch (error) {
@@ -229,9 +240,9 @@ const closeOnOverlayClick = ()=>{
 
 const closeOnScroll = ()=>{
   if(barsMenu.classList.contains("open-menu") || cartMenu.classList.contains("open-cart")){
-      cartMenu.classList.remove("open-cart");
-      barsMenu.classList.remove("open-menu");
-      overlay.classList.remove("show-overlay");
+    cartMenu.classList.remove("open-cart");
+    barsMenu.classList.remove("open-menu");
+    overlay.classList.remove("show-overlay");
   }
 }
 
@@ -344,17 +355,42 @@ const resetCart = () =>{
 const completeBtnAction = (confirmMsg, successMsg) =>{
   if(!cart.length) return
   if(window.confirm(confirmMsg)){
-      resetCart()
-      alert(successMsg)
+    resetCart()
+    alert(successMsg)
   }
 }
 
+/*
+const completeBtnActionModel = (msg) =>{
+  resetCart()
+  //showModelMessage("¡Gracias por su compra!");
+    setMesaageModalWindow(msg);
+    showModelWindow();
+}
+*/
+
 const completeBuy = () =>{
-  completeBtnAction("¿Desea finalizar la compra?", "¡Gracias por su compra!");
+  //completeBtnAction("¿Desea finalizar la compra?", "¡Gracias por su compra!");
+  //showModelMessage("¿Desea finalizar la compra?");
+  openModelWindow("¿Desea finalizar la compra?", true);
+  //btnOkWindow.addEventListener("click", completeBtnActionModel("¡Gracias por su compra!"));
+
+  btnOkWindow.addEventListener("click", ()=>{
+    resetCart()
+    openModelWindow("¡Gracias por su compra!", false);
+  });
+  btnCancelWindow.addEventListener("click", closeModelWindow);
 }
 
 const deleteCart = () =>{
-  completeBtnAction("¿Desea vaciar el carrito?", "Carrito vacio!");
+  //completeBtnAction("¿Desea vaciar el carrito?", "Carrito vacio!");
+  openModelWindow("¿Desea vaciar el carrito?", true);
+  //btnOkWindow.addEventListener("click", completeBtnActionModel("Se vació el carrito con éxito."));
+  btnOkWindow.addEventListener("click", ()=>{
+    resetCart()
+    openModelWindow("Se vació el carrito con éxito.", false);
+  });
+  btnCancelWindow.addEventListener("click", closeModelWindow);
 }
 
 const updateCartState = ()=>{
@@ -388,64 +424,109 @@ const showModelSuccess = (msg) =>{
   }, 3000)
 };
 
-const verifyLength = (text)=>{
-  if(text.length > 3) return true
+const isValidPhone = (phone) => {
+  //const regex = /^\d{7}$/
+  const regex = /^\(\d{3}\)\s\d{3}-\d{4}$/;
+
+  //console.log("Phone --> " + phone);
+  
+  return regex.test(phone);
+};
+
+const isValidEmail = (email) => {
+  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/;
+  return regex.test(email);
+};
+
+const isValidText = (text)=>{
+  const regex = /^[a-zA-Z]+$/; // evaluo que solo sean letras
+  return text.length
+    ? regex.test(text)
+    : false;
 }
 
-const handleSubmit = () =>{
-
-  const name = document.querySelector("#name").value;
-  const email = document.querySelector("#email").value;
-  const phone = document.querySelector("#phone").value;
-  /*
-  const address = document.querySelector("#address").value;
-  const city = document.querySelector("#city").value;
-  const postalCode = document.querySelector("#postal-code").value;
-  */
-  console.log(name);
-
-
-  //name.addEventListener("change", verifyLength(name));
+const handleSubmit = (e) =>{
+  e.preventDefault();
+  const name = document.querySelector("#name").value.trim();
+  const lastName = document.querySelector("#lastname").value.trim();
+  const email = document.querySelector("#email").value.trim();
+  const phone = document.querySelector("#phone").value.trim();
   
-
-  if(!verifyLength(name)){
+  if(!isValidText(name)){
     nameMessage.classList.remove("hidden");
-    nameMessage.textContent = "Debe contener al menos 3 caracteres.";
-    //alert("El nombre debe tener al menos 3 caracteres");
-    return
+    nameMessage.textContent = "Este campo es obligatorio.";
+    //return
   }
   else{
     nameMessage.classList.add("hidden");
+    nameMessage.textContent = "";
   }
-  /*
-  if(!verifyLength(email)){
-    alert("El email debe tener al menos 3 caracteres");
-    return
+  if(!isValidText(lastName)){
+    lastnameMessage.classList.remove("hidden");
+    lastnameMessage.textContent = "Este campo es obligatorio.";
+    //return
   }
-  if(!verifyLength(phone)){
-    alert("El telefono debe tener al menos 3 caracteres");
-    return
+  else{
+    lastnameMessage.classList.add("hidden");
+    lastnameMessage.textContent = "";
   }
-  if(!verifyLength(address)){
-    alert("La direccion debe tener al menos 3 caracteres");
-    return
+  if(!isValidEmail(email)){
+    //console.log(email);
+    emailMessage.classList.remove("hidden");
+    emailMessage.textContent = "E-mail no válido.";
+    //return
+  }else{
+    emailMessage.classList.add("hidden");
+    emailMessage.textContent = "";
   }
-  if(!verifyLength(city)){
-    alert("La ciudad debe tener al menos 3 caracteres");
-    return
+  if(!isValidPhone(phone)){
+    phoneMessage.classList.remove("hidden");
+    phoneMessage.textContent = "Teléfono no válido.Ejemplo: (123) 456-7890";
+    //return
   }
-  if(!verifyLength(postalCode)){
-    alert("El codigo postal debe tener al menos 3 caracteres");
-    return
+  else{
+    phoneMessage.classList.add("hidden");
+    phoneMessage.textContent = "";
   }
-  */
-  //alert("Gracias por tu compra");
   //resetCart();
 
-
-
+  if(isValidText(name) 
+    && isValidText(lastName) 
+    && isValidEmail(email) 
+    && isValidPhone(phone) ){
+      openModelWindow("¡Gracias! Te contactaremos pronto.", false);
+    }
 }
 
+const openModelWindow = (msg, configSecondBtn) =>{
+  modalWindow.style.display = "flex";
+  configModelWindow(msg, configSecondBtn);
+}
+
+const showModelMessage = (msg) =>{
+  messageModalWindow.textContent = msg;
+  modalWindow.style.display = "flex";
+}
+
+const configModelWindow = (msg, configSecondBtn) =>{
+  messageModalWindow.textContent = msg;
+  configSecondBtn
+  ? btnContainerWindow.style.display = "flex"
+  : btnContainerWindow.style.display = "none";
+}
+
+const setMesaageModalWindow = (msg) =>{
+  messageModalWindow.textContent = msg;
+  modalWindow.style.display = "flex";
+}
+
+const closeModelWindow = ({target}) =>{
+  if(target.classList.contains("btn-ok") 
+    || target.classList.contains("close-modal")
+    || target.classList.contains("btn-cancel")){
+    modalWindow.style.display = "none";
+  }
+}
 
 const init = async() =>{
   rederCategories();
@@ -470,16 +551,20 @@ const init = async() =>{
 
   btnBuy.addEventListener("click", completeBuy)
   btnDelete.addEventListener("click", deleteCart)
-
-
   categoriesContainer.addEventListener("click", renderProductsByCategory);
-
-
 
   // Formulario
   form.addEventListener("submit", handleSubmit);
-
   
+  // Modal window
+  closeModalWindow.addEventListener("click", closeModelWindow);
+  //btnModalWindow.addEventListener("click", closeModelWindow);
+
+  // Si lo activo no aparece el cartel de gracias por la compra o el aviso de carrito vacio con exito
+  //btnContainerWindow.addEventListener("click", closeModelWindow);
+  btnOkWindow.addEventListener("click", closeModelWindow);
+  btnCancelWindow.addEventListener("click", closeModelWindow);
+
   updateCartState();
 }
 
