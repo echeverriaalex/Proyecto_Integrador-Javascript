@@ -28,6 +28,14 @@ const componentsContainer = document.querySelector(".components-container");
 const btnAdd = document.querySelector('.btn-add');
 const productsContainer = document.querySelector(".products-container");
 const categoriesContainer = document.querySelector(".categories-container");
+const sectionProducts = document.getElementById("products");
+
+// Elementos del paginado
+const pagesContainer = document.querySelector(".pages-container");
+const previousPage = document.querySelector(".previous-page");
+const nextPage = document.querySelector(".next-page");
+
+const btnDeleteCategory = document.querySelector(".delete-category");
 
 // Otros elementos
 const modal = document.querySelector('.add-modal');
@@ -50,8 +58,9 @@ const btnContainerWindow = document.querySelector(".btn-container");
 const btnOkWindow = document.querySelector(".btn-ok");
 const btnCancelWindow = document.querySelector(".btn-cancel");
 
-
-let productList = [];
+let currentPage = 0;
+let allProductsTemplate = [];
+let categoryProductsTemplates = [];
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 const saveCart = ()=>{
@@ -60,7 +69,13 @@ const saveCart = ()=>{
 
 const createCatgoryTemplate = (category)=>{
   const {slug, name, url} = category;
-  return `<p class="category" data-category="${slug}" data-url="${url}">${name}</p>`
+  return `
+    <div class="container-category"> 
+      <p class="category" data-category="${slug}" data-url="${url}">${name}</p>
+      <p class="delete-category">
+        <i class="fa-solid fa-xmark icon-delete-category"></i>
+      </p>
+    </div>`
 }
 
 const getAllCategories = async()=>{
@@ -96,27 +111,57 @@ const getAllProductsByCategory = async(url)=>{
 }
 
 const renderProductsByCategoryUrl = async(url) =>{
-  try {
+  try{
+    categoryProductsTemplates = [];
     const productsCategory = await getAllProductsByCategory(url)
-    //console.log("tengo los de la categoria");    
-    let templates = productsCategory.map(product => createProductTemplate(product)).join('')
-    productsContainer.innerHTML = templates;    
-  } catch (error) {
+    let arrayPages =  splitByPages(productsCategory);
+    categoryProductsTemplates = renderTemplatePages(arrayPages);
+    // currentPage =  0; REVISAR y Pensar
+    productsContainer.innerHTML = categoryProductsTemplates[0];
+    renderPageContainer(categoryProductsTemplates.length)
+    pagesContainer.querySelectorAll(".number-page")[0].classList.add("active");
+  }catch(error){
     console.log("Error al renderizar los elementos de la URL de la categoria --> " + error);
   }
 }
 
-const renderProductsByCategory = ({target})=>{
-  if(!target.classList.contains("category")) return
-  /*  Traigo todos los elementos del container, y por cada uno que tenga la clase categoria
-    le remuevo la clase active-category si la tiene */
-  categoriesContainer.querySelectorAll(".category")
-    .forEach(category => category.classList.remove("active-category"));
 
-  // Agrego la clase active-category al elemento que se le hizo click
-  target.classList.add("active-category");
-  const urlCategory = target.dataset.url;
-  renderProductsByCategoryUrl(urlCategory);
+const resetStylesCategories = () =>{
+  categoriesContainer.querySelectorAll(".container-category")
+    .forEach(container => {
+      container.classList.remove("active-category")
+      const category = container.querySelector(".category");
+      category.classList.remove("active-category")
+      const deleteCategory = container.querySelector(".delete-category");
+      deleteCategory.style.display = "none";
+    });
+}
+
+
+const renderProductsByCategory = ({target})=>{
+  resetStylesCategories();
+  currentPage = 0;
+  if(target.classList.contains("container-category")){
+    target.classList.add("active-category")
+    let category = target.querySelector(".category");
+    categoriesContainer.querySelectorAll(".container-category")
+    .forEach(container => {
+      const containerCategory = container.querySelector(".category");
+      if(category.dataset.category == containerCategory.dataset.category){
+        const deleteCategory = container.querySelector(".delete-category");
+        deleteCategory.style.display = "flex";
+      }
+    });
+    const urlCategory = category.dataset.url;
+    renderProductsByCategoryUrl(urlCategory);
+  }
+
+  if(target.classList.contains("category")){
+    const urlCategory = target.dataset.url;
+    target.closest(".container-category").querySelector(".delete-category").style.display = "flex";
+    target.closest(".container-category").classList.add("active-category")
+    renderProductsByCategoryUrl(urlCategory);
+  }
 }
 
 const createProductTemplate = (product)=>{
@@ -177,14 +222,155 @@ const structureData = async()=>{
 }
 */
 
+const createTemplatePage = (page) =>{
+  return `<div class="page"><p class="number-page" data-page="${page}">${page}</p></div>`;
+}
+
+const createTemplatePages = (pages) =>{
+  let templates = [];
+  for(let i=1; i <= pages; i++){
+    templates.push(createTemplatePage(i));
+  }
+  return templates.join('');
+}
+
+const checkActiveCategory = () =>{
+  let allContainersCategory = categoriesContainer.querySelectorAll(".container-category");
+  // Transformo el NodeList llamado allContainersCategory a un Array para poder usar el metodo some
+  return Array.from(allContainersCategory)
+    .some(container => container.classList.contains("active-category"));
+}
+
+const renderPreviousPage = () =>{
+  if(currentPage >= 0 && (currentPage <= categoryProductsTemplates.length || currentPage <= allProductsTemplate.length)){
+    // Primero resto uno a la pagina actual
+    let previous = Number(currentPage) - 1;
+    if(checkActiveCategory()){// si hay una catgeria seleccionada
+      if(previous < categoryProductsTemplates.length && previous >= 0){
+        currentPage = previous;
+        updateProductContainer(categoryProductsTemplates[previous]);
+        // Al target le asigno el valor del indice del arreglo de paginas
+        updateColorPage({target: pagesContainer.querySelectorAll(".number-page")[previous]});
+      }
+    }
+    if(!checkActiveCategory()){ // si no hay ninguna categoria seleccionada
+      if(previous < allProductsTemplate.length && previous >= 0){
+        currentPage = previous;
+        updateProductContainer(allProductsTemplate[previous]);
+        // Al target le asigno el valor del indice del arreglo de paginas
+        updateColorPage({target: pagesContainer.querySelectorAll(".number-page")[previous]});
+      }
+    }
+  }
+}
+
+const renderNextPage = () =>{
+  if(currentPage >= 0 && (currentPage <= categoryProductsTemplates.length || currentPage <= allProductsTemplate.length)){
+    let nextPage = Number(currentPage) + 1;
+    if(checkActiveCategory()){
+      if(nextPage < categoryProductsTemplates.length){
+        currentPage = nextPage;
+        updateProductContainer(categoryProductsTemplates[nextPage]);
+        // Al target le asigno el valor del indice del arreglo de paginas
+        updateColorPage({target: pagesContainer.querySelectorAll(".number-page")[nextPage]});
+      }
+    }
+    if(!checkActiveCategory()){
+      if(nextPage < allProductsTemplate.length){
+        currentPage = nextPage;
+        updateProductContainer(allProductsTemplate[nextPage]);
+        // Al target le asigno el valor del indice del arreglo de paginas
+        updateColorPage({target: pagesContainer.querySelectorAll(".number-page")[nextPage]});
+      }
+    }
+  }
+}
+
+const renderPageContainer = (pages) =>{
+  pagesContainer.innerHTML = createTemplatePages(pages);
+}
+
+const updateProductContainer = (arrayPage) =>{
+  productsContainer.innerHTML = arrayPage;
+  // Redirijo el scroll al inicio de la seccion de productos
+  sectionProducts.scrollIntoView({ behavior: "smooth" });
+}
+
+const updateColorPage = ({target}) =>{
+  pagesContainer.querySelectorAll(".number-page")
+    .forEach(page => page.classList.remove("active"));
+  target.classList.add("active");
+}
+
+const renderProductsOfPage = ({target}) =>{
+  // Si no hay ninguna categoria seleccionada
+  if(!checkActiveCategory()){
+    if(!target.classList.contains("number-page")) return
+    // Capturo el numero de la pagina y le resto uno para que conicida con el indice del array
+    let pageToRender = target.dataset.page - 1;
+    currentPage = pageToRender
+    updateColorPage({target});
+    updateProductContainer(allProductsTemplate[pageToRender]);
+  }
+  // Si hay una categoria seleccionada
+  if(checkActiveCategory()){
+    if(!target.classList.contains("number-page")) return
+    // Capturo el numero de la pagina y le resto uno para que conicida con el indice del array
+    let pageToRender = target.dataset.page - 1;
+    currentPage = pageToRender
+    updateColorPage({target});
+    updateProductContainer(categoryProductsTemplates[pageToRender]);
+  }
+}
+
+const splitByPages = (products) =>{
+  if(products){
+    let subdata = [];
+    for(let i=0; i < products.length; i += 12){
+      subdata.push(products.slice(i, i + 12));
+    }
+    return subdata;
+  }
+}
+
+const renderTemplatePages = (arrayPages) =>{
+  if(arrayPages){
+    let templates = [];
+    for(let i=0; i < arrayPages.length; i++){
+      templates.push(arrayPages[i].map(product => createProductTemplate(product)).join(''));
+    }
+    return templates;
+  }
+}
+
+const resetProductContainer = ({target}) =>{
+  if(target.classList.contains("delete-category") || target.classList.contains("icon-delete-category")){
+    // Muestro solo la primera pagina
+    productsContainer.innerHTML = allProductsTemplate[0];
+    // Reseteo el container de paginas
+    renderPageContainer(allProductsTemplate.length)
+    pagesContainer.querySelectorAll(".number-page")[0].classList.add("active");
+  }
+}
+
 const rederProducts = async() =>{
+  currentPage = 0;
+  // Reseteo el array global de templates cada vez que se cargue la App
+  allProductsTemplate = []  
   try {
-    const products = await getAllProducts()
-    productList = [...products];
+    const products = await getAllProducts();
+    // Deje este codigo para ejemplos de otras situaciones
     //producstCatalog.innerHTML = await structureData();
-    let templates = products.map(product => createProductTemplate(product)).join('')
-    productsContainer.innerHTML = templates;    
-  } catch (error) {
+    //let templates = products.map(product => createProductTemplate(product)).join('')
+    //productsContainer.innerHTML = templates;
+    let arrayPages = splitByPages(products);
+    // Cargo los templates de los productos en el array
+    allProductsTemplate = renderTemplatePages(arrayPages);
+    // Muestro solo la primera pagina
+    productsContainer.innerHTML = allProductsTemplate[0];
+    renderPageContainer(allProductsTemplate.length)
+    pagesContainer.querySelectorAll(".number-page")[0].classList.add("active");
+  }catch (error) {
     console.log("Error al renderizar los elementos" + error);
   }
 }
@@ -374,7 +560,6 @@ const completeBuy = () =>{
   //showModelMessage("¿Desea finalizar la compra?");
   openModelWindow("¿Desea finalizar la compra?", true);
   //btnOkWindow.addEventListener("click", completeBtnActionModel("¡Gracias por su compra!"));
-
   btnOkWindow.addEventListener("click", ()=>{
     resetCart()
     openModelWindow("¡Gracias por su compra!", false);
@@ -427,9 +612,6 @@ const showModelSuccess = (msg) =>{
 const isValidPhone = (phone) => {
   //const regex = /^\d{7}$/
   const regex = /^\(\d{3}\)\s\d{3}-\d{4}$/;
-
-  //console.log("Phone --> " + phone);
-  
   return regex.test(phone);
 };
 
@@ -540,18 +722,25 @@ const init = async() =>{
   cartBtn.addEventListener("click", toggleCart)
   cartCross.addEventListener("click", toggleCart)
   productsCart.addEventListener("click", handleQueantity)
+  btnBuy.addEventListener("click", completeBuy)
+  btnDelete.addEventListener("click", deleteCart)
   
   // Productos
   productsContainer.addEventListener("click", addProduct);
-  
+
+  // Categories
+  categoriesContainer.addEventListener("click", renderProductsByCategory);
+  categoriesContainer.addEventListener("click", resetProductContainer);
+
+  // Paginado
+  pagesContainer.addEventListener("click", renderProductsOfPage);
+  previousPage.addEventListener("click", renderPreviousPage);
+  nextPage.addEventListener("click", renderNextPage);
+
   // Otros
   overlay.addEventListener("click", closeOnOverlayClick)
   window.addEventListener("scroll", closeOnScroll);
   window.addEventListener("DOMContentLoaded", renderCart);
-
-  btnBuy.addEventListener("click", completeBuy)
-  btnDelete.addEventListener("click", deleteCart)
-  categoriesContainer.addEventListener("click", renderProductsByCategory);
 
   // Formulario
   form.addEventListener("submit", handleSubmit);
@@ -564,6 +753,8 @@ const init = async() =>{
   //btnContainerWindow.addEventListener("click", closeModelWindow);
   btnOkWindow.addEventListener("click", closeModelWindow);
   btnCancelWindow.addEventListener("click", closeModelWindow);
+
+  window.addEventListener("click", () => console.log(`Current oage value --> ${currentPage}`));
 
   updateCartState();
 }
