@@ -9,9 +9,29 @@
 
 @keyframes appear {
     from{
-        transform: opacity(0);
+        opacity: 0;
     }
     to{
-        transform: opacity(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-menu {
+    from{
+        transform: translateY(-100%);
+    }
+    to{
+        transform: translateY(0%);
+    }
+}
+
+@keyframes slidedown {
+    from{
+        transform: translateY(-100%);
+        transform: skew(0px);
+    }
+    to{
+        transform: translateY(0%);
+        transform: skew(250px);
     }
 }

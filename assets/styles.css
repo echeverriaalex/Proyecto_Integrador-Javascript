@@ -11,7 +11,7 @@
 
 :root{
     --white-text: #fff;
-    --max-width: 1200px;
+    --max-width: 1000px;
     --border-radius: 10px;
     --bg-green: #069c56; /* #0aac60; */
 
@@ -499,11 +499,10 @@ section{
 .hero{
     margin-top: 70px;
     display: flex;
-    justify-content: center;
+    justify-content: stretch;
     align-items: center;
     gap: 10px;
-    width: 100%;
-    padding: 50px;
+    padding: 50px 0px;
     background: linear-gradient(var(--bg-green) , white);
     background: linear-gradient(var(--bg-green) , var(--bg-gray));
     animation: appear 1s linear;
@@ -514,17 +513,29 @@ section{
     gap: 10px;
     padding: 10px;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     max-width: var(--max-width);
     width: 100%;
     animation: appear 1s linear;
+    height: 300px;
+    animation: appear 2s linear;
+    animation: slide-menu 2s, appear 5s;
+    /*animation: name duration timing-function delay iteration-count direction fill-mode;*/
 }
 
 .title-container{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     gap: 30px;
+
+    border: 1px solid white;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.50);
+    /*filter: blur(5px);*/
+    border-radius: 20px;
+    width: 100%;
 }
 
 .title{
@@ -555,7 +566,7 @@ section{
     font-family: "Didact Gothic", sans-serif;
     font-weight: 400;
     font-style: normal;
-    color: var(--white-text);
+    /*color: var(--white-text);*/
     font-family: "Doto", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
@@ -568,6 +579,7 @@ section{
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .img-hero img{
@@ -589,6 +601,9 @@ section{
     max-width: var(--max-width);
     border-radius: 10px;
     box-shadow: 1px 1px 15px 1px #c0c0c0;
+
+    /* background: linear-gradient(80deg, var(--bg-green), #dadada); */
+    background: #cfcfcf;
 }
 
 .title-section{
@@ -617,23 +632,17 @@ section{
     border-radius: 10px;
 }
 
-/*
+
 .about-cards-container{
-    border: 3px solid orange;
+    border: none;
 }
 
+/*
 .about-cards-container > .description-card{
     background: cyan;
 }
 
 */
-
-
-
-
-
-
-
 
 
 .description-card{
@@ -644,7 +653,7 @@ section{
     width: 100%;
     max-width: 800px;
     padding: 10px;
-    border: 1px solid white;
+    /*border: 1px solid white;*/
 }
 
 .description-image{
@@ -663,6 +672,12 @@ section{
     font-weight: 900;
     font-size: 18px;
     font-family: "Doto", sans-serif;
+}
+
+.translucent-background{
+    background: rgba(255, 255, 255, 0.50);
+    border-radius: 10px;
+    padding: 20px;
 }
 
 /* Services */
@@ -738,9 +753,21 @@ section{
     max-width: var(--max-width);
 }
 
-.category{
+
+.container-category{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
     background: var(--bg-green);
     padding: 5px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.category{
+    /*background: var(--bg-green);*/
+    /* padding: 5px 20px; */
     border-radius: 8px;
     font-weight: 800;
     color: white;
@@ -748,7 +775,18 @@ section{
     cursor: pointer;
 }
 
-.active-category{
+.delete-category{
+    cursor: pointer;
+    color: white;
+    background: red;
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+    display: none;
+}
+
+.active-category, .active{
     background: var(--primary);
 }
 
@@ -758,7 +796,9 @@ section{
     max-width: var(--max-width);
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    justify-content: center;
+    align-items: stretch;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 220px));
     gap: 20px;
 }
 
@@ -792,7 +832,8 @@ section{
     /*background: red;*/
     padding: 5px 10px;
     display: flex;
-    gap: 10px;
+    gap: 5px;
+    flex-wrap: wrap;
 }
 
 .tag-product{
@@ -861,6 +902,47 @@ section{
     height: 14px;
 }
 
+/* Pages Container*/
+.paging-container{
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.pages-container{
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.page{
+    cursor: pointer;
+    border-radius: 8px;
+    background: var(--bg-green);
+}
+
+.number-page{
+    color: white;
+    font-size: 16px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.arrow{
+    color: white;
+    padding: 10px 10px;
+    background: black;
+    border-radius: 8px;
+    cursor: pointer;
+}
 
 
 /* Contacto */
@@ -875,6 +957,7 @@ section{
     box-shadow: 1px 1px 15px 1px #c0c0c0;
     width: 100%;
     max-width: var(--max-width);
+    background: #cfcfcf;
 }
 
 .contact-form{
@@ -911,11 +994,11 @@ section{
 .input-container input{
     height: 25px;
     width: 100%;
-    
     font-size: 20px;
     border: none;
     padding-left: 5px;
     border-bottom: 1px solid black;
+    background: transparent;
 }
 
 .input-container input:focus{
@@ -944,16 +1027,17 @@ section{
     padding: 5px;
 }
 
+/* Footer */
 footer{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
     width: 100%;
     min-height: 120px;
     background: var(--bg-green);
-    padding: 40px;
+    padding: 60px 40px;
 }
 
 .store-list{
@@ -961,8 +1045,9 @@ footer{
     width: 100%;
     max-width: var(--max-width);
     display: grid;
+    justify-content: center;
     gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(120px, 210px));
 }
 
 /*
@@ -980,18 +1065,16 @@ footer{
     display: block;
     padding: 10px;
     border-radius: 10px;
-
-
     font-family: 'Figtree';
     font-style: italic;
     font-weight: 500;
     font-display: swap;
-
 }
 
 footer p{
     color: white;
     font-size: 22px;
+    text-align: center;
 }
 
 .developer{
@@ -1001,6 +1084,7 @@ footer p{
     animation: pulse .5s infinite linear alternate-reverse;
 }
 
+/* Modal windows */
 .modal{
     position: fixed;
     width: 100%;

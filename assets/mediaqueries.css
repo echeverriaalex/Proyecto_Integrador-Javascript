@@ -54,20 +54,23 @@
         animation: slidedown .5s linear;
     }
 
+    .navbar-list::after{
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: all 3s;
+        border: 10px solid transparent;
+        border-bottom-color: #0aac60;
+
+    }
+
     .open-menu{
         display: flex;
     }
 
-    @keyframes slidedown {
-        from{
-            transform: translateY(-100%);
-            transform: skew(0px);
-        }
-        to{
-            transform: translateY(0%);
-            transform: skew(250px);
-        }
-    }
+   
 
 
 
@@ -100,7 +103,9 @@
     }
 
     .hero-container{
+        padding: 10px;
         flex-direction: column;
+        height: unset;
     }
 
     .title-container{
@@ -166,7 +171,7 @@
 
     .products-container{
         padding: 10px;
-        grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
+        /*grid-template-columns: repeat(auto-fit, minmax(45%, 210px));*/
         gap: 10px;
     }
 
@@ -184,9 +189,26 @@
         font-size: 16px;
     }
 
-    .store-list{
+    /* Pages Container*/
+    .pages-container{
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        align-items: center;
         flex-wrap: wrap;
-        gap: 20px;
+    }
+
+    /* Footer */
+    footer{
+        padding: 40px 10px;
+    }
+
+    .store-list{
+        padding: 20px 0px;
+        flex-wrap: wrap;
+        gap: 8px;
+        row-gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 140px));
     }
 }
 
@@ -227,7 +249,6 @@
         width: 100%;
     }
 
-
     /* About us*/
     .description-card{
         display: flex;
@@ -249,8 +270,9 @@
     /* Products */
     .products-container{
         padding: 0px;
-        grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
-        gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 8px;
+        row-gap: 15px;
     }
 
     .product-card{
@@ -258,10 +280,7 @@
         padding: 5px;
     }
 
-
-
     .tag-container{
-        /*background: red;*/
         padding: 0px;
         display: flex;
         flex-wrap: wrap;
@@ -270,7 +289,6 @@
         gap: 5px;
         width: 100%;
     }
-
 
     .product-title{
         font-size: 16px;
@@ -292,17 +310,11 @@
         padding: 8px;
     }
 
+    
 
+
+    /* Contact */
     .contact-container img{
         display: none;
-    }
-}
-
-@keyframes slide-menu {
-    from{
-        transform: translateY(-100%);
-    }
-    to{
-        transform: translateY(0%);
     }
 }
